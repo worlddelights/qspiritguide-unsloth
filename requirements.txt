@@ -1,0 +1,10 @@
+trl
+peft
+accelerate
+transformers
+datasets
+jupyter
+ipykernel
+mlx-tune
+openai
+PyMuPDF

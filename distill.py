@@ -11,10 +11,15 @@ import os
 from openai import OpenAI
 
 # 1. Configuration
+with open("config.json", "r") as f:
+    config = json.load(f)
+
+lm_cfg = config["lm_studio"]
 client = OpenAI(
-    base_url="http://localhost:1234/v1",
-    api_key="lm-studio"
+    base_url=lm_cfg["base_url"],
+    api_key=lm_cfg["api_key"]
 )
+MODEL_NAME = lm_cfg["model"]
 
 RAW_DATA_DIR = "raw_data"
 STAGED_FILE = "data/staged_data.json"
@@ -65,7 +70,7 @@ PREVIOUS_GENERATED_CONTEXT:
 
     try:
         response = client.chat.completions.create(
-            model="your-medium-model-name", 
+            model=MODEL_NAME,
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": f"Extract Q&A from this new text:\n\n{chunk}"}

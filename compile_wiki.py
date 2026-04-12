@@ -26,6 +26,10 @@ RAW_DATA_DIR = "raw_data"
 WIKI_DIR = "wiki"
 STATE_FILE = ".wiki_state.json"
 CHUNK_SIZE_WORDS = CONFIG["wiki"]["chunk_size_words"]
+MAX_TOKENS = CONFIG["wiki"].get("max_tokens", 2048)
+TEMPERATURE = CONFIG["wiki"].get("temperature", 0.2)
+
+print(f"[Config] chunk_size_words={CHUNK_SIZE_WORDS}, max_tokens={MAX_TOKENS}, temperature={TEMPERATURE}")
 
 def get_file_hash(filepath):
     hasher = hashlib.md5()
@@ -76,44 +80,42 @@ def chunk_text(text, size=CHUNK_SIZE_WORDS):
         yield " ".join(words[i:i + size])
 
 def call_llm(system_prompt, user_prompt):
-    try:
-        response = CLIENT.chat.completions.create(
-            model=MODEL,
-            messages=[
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": user_prompt}
-            ],
-            temperature=0.2
-        )
-        return response.choices[0].message.content.strip()
-    except Exception as e:
-        print(f"Error calling LLM: {e}")
-        return None
+    """Call the LLM. Raises on error — callers must handle failures explicitly."""
+    response = CLIENT.chat.completions.create(
+        model=MODEL,
+        messages=[
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt}
+        ],
+        temperature=TEMPERATURE,
+        max_tokens=MAX_TOKENS,
+    )
+    return response.choices[0].message.content.strip()
 
 def extract_concepts(chunk):
+    """Extract concept names from a chunk. Raises on LLM failure."""
     system_prompt = "You are a Master Librarian. Extract a clean list of core conceptual topics, entities, or spiritual/scientific principles from the provided text. Return ONLY a comma-separated list of titles."
     result = call_llm(system_prompt, f"Extract concepts from this text:\n\n{chunk}")
-    if result:
-        return [c.strip().replace("#", "").replace(".", "") for c in result.split(",") if c.strip()]
-    return []
+    return [c.strip().replace("#", "").replace(".", "") for c in result.split(",") if c.strip()]
 
 def process_concept(concept_name, chunk_text):
+    """Write/update wiki files for a concept. Raises on LLM failure."""
     safe_name = re.sub(r'[^a-zA-Z0-9_\-]', '_', concept_name.lower().replace(" ", "_"))
     main_file = os.path.join(WIKI_DIR, f"{safe_name}.md")
     hist_file = os.path.join(WIKI_DIR, f"history_{safe_name}.md")
-    
+
     existing_main = ""
     if os.path.exists(main_file):
         with open(main_file, 'r') as f:
             existing_main = f.read()
-            
+
     existing_hist = ""
     if os.path.exists(hist_file):
         with open(hist_file, 'r') as f:
             existing_hist = f.read()
 
     system_prompt = f"""You are an expert synthesizer of the Seth material and metaphysical knowledge. 
-Your goal is to maintain a 'Current Understanding' article for the concept: '{concept_name}'.
+ Your goal is to maintain a 'Current Understanding' article for the concept: '{concept_name}'.
 
 RULES:
 1. FOCUS: Only include the most current, accurate, and stable understanding of the concept.
@@ -127,24 +129,24 @@ RULES:
 """
 
     user_prompt = f"Existing Article:\n{existing_main}\n\nExisting History:\n{existing_hist}\n\nNew Raw Information:\n{chunk_text}\n\nPlease synthesize the new information into the article."
-    
-    result = call_llm(system_prompt, user_prompt)
-    if result:
-        # Simple extraction logic for the blocks
-        main_match = re.search(r'===CURRENT===\n(.*?)(?===HISTORY===|$)', result, re.DOTALL)
-        hist_match = re.search(r'===HISTORY===\n(.*)', result, re.DOTALL)
-        
-        if main_match:
-            new_main = main_match.group(1).strip()
-            if new_main:
-                with open(main_file, 'w') as f:
-                    f.write(new_main)
-                    
-        if hist_match:
-            new_hist = hist_match.group(1).strip()
-            if new_hist and new_hist.lower() != "none" and len(new_hist) > 10:
-                with open(hist_file, 'w') as f:
-                    f.write(new_hist)
+
+    result = call_llm(system_prompt, user_prompt)  # raises on error
+
+    # Extract the two blocks
+    main_match = re.search(r'===CURRENT===\n(.*?)(?===HISTORY===|$)', result, re.DOTALL)
+    hist_match = re.search(r'===HISTORY===\n(.*)', result, re.DOTALL)
+
+    if main_match:
+        new_main = main_match.group(1).strip()
+        if new_main:
+            with open(main_file, 'w') as f:
+                f.write(new_main)
+
+    if hist_match:
+        new_hist = hist_match.group(1).strip()
+        if new_hist and new_hist.lower() != "none" and len(new_hist) > 10:
+            with open(hist_file, 'w') as f:
+                f.write(new_hist)
 
 def main():
     if not os.path.exists(STATE_FILE):
@@ -153,6 +155,7 @@ def main():
         with open(STATE_FILE, 'r') as f:
             state = json.load(f)
 
+    os.makedirs(WIKI_DIR, exist_ok=True)
     raw_files = sorted([f for f in os.listdir(RAW_DATA_DIR) if f.endswith(('.txt', '.md', '.pdf', '.epub'))])
     pending = [f for f in raw_files if state.get(f) != get_file_hash(os.path.join(RAW_DATA_DIR, f))]
     print(f"Found {len(raw_files)} raw files total, {len(pending)} pending.")
@@ -170,13 +173,30 @@ def main():
 
         chunks = list(chunk_text(data))
         print(f"Split {filename} into {len(chunks)} chunks")
+        file_ok = True
         for i, chunk in enumerate(chunks, 1):
             print(f"  Chunk {i}/{len(chunks)}")
-            concepts = extract_concepts(chunk)
+            try:
+                concepts = extract_concepts(chunk)
+            except Exception as e:
+                print(f"  ❌ LLM error during concept extraction (chunk {i}): {e}")
+                file_ok = False
+                break
             print(f"  Concepts: {concepts}")
             for concept in concepts:
                 print(f"    Processing concept: {concept}")
-                process_concept(concept, chunk)
+                try:
+                    process_concept(concept, chunk)
+                except Exception as e:
+                    print(f"    ❌ LLM error processing '{concept}' (chunk {i}): {e}")
+                    file_ok = False
+                    break
+            if not file_ok:
+                break
+
+        if not file_ok:
+            print(f"\n⚠️  Halting — LLM error encountered while processing '{filename}'. State NOT updated.")
+            return
 
         state[filename] = current_hash
         with open(STATE_FILE, 'w') as f:

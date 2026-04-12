@@ -2,9 +2,14 @@
   "lm_studio": {
     "base_url": "http://localhost:1234/v1",
     "api_key": "lm-studio",
-    "model": "Gemini4"
+    "model": "google/gemma-4-31b"
   },
   "wiki": {
-    "chunk_size_words": 8000
+    "chunk_size_words": 1500,
+    "max_tokens": 2048,
+    "temperature": 0.2
+  },
+  "finetune": {
+    "base_model": "unsloth/Qwen2.5-0.5B"
   }
 }

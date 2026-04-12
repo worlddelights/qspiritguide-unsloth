@@ -6,10 +6,17 @@ The dataset and prompt formats are currently placeholders, pending a deeper
 dive into the custom English texts formatting.
 """
 
+import json
 import torch
 import sys
 from datasets import load_dataset
 from transformers import TrainingArguments
+
+# Load project config
+with open("config.json", "r") as f:
+    config = json.load(f)
+
+BASE_MODEL = config["finetune"]["base_model"]
 
 # Check for Apple Silicon (Mac) to use MLX for efficient local execution
 if sys.platform == "darwin":
@@ -30,7 +37,7 @@ load_in_4bit = True # Use 4bit quantization to reduce memory usage. Can be False
 # 2. Load Model
 # Using the requested Qwen2.5-0.5B model
 model, tokenizer = FastLanguageModel.from_pretrained(
-    model_name = "unsloth/Qwen2.5-0.5B",
+    model_name = BASE_MODEL,
     max_seq_length = max_seq_length,
     dtype = dtype,
     load_in_4bit = load_in_4bit,

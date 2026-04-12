@@ -2,12 +2,12 @@
   "lm_studio": {
     "base_url": "http://localhost:1234/v1",
     "api_key": "lm-studio",
-    "model": "google/gemma-4-31b"
+    "model": "nvidia/nemotron-3-nano"
   },
   "wiki": {
-    "chunk_size_words": 1500,
-    "max_tokens": 2048,
-    "temperature": 0.2
+    "max_context_token": 44444,
+    "temperature": 0.5,
+    "enable_thinking": false
   },
   "finetune": {
     "base_model": "unsloth/Qwen2.5-0.5B"

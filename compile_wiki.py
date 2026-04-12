@@ -25,11 +25,30 @@ MODEL = CONFIG["lm_studio"]["model"]
 RAW_DATA_DIR = "raw_data"
 WIKI_DIR = "wiki"
 STATE_FILE = ".wiki_state.json"
-CHUNK_SIZE_WORDS = CONFIG["wiki"]["chunk_size_words"]
-MAX_TOKENS = CONFIG["wiki"].get("max_tokens", 2048)
 TEMPERATURE = CONFIG["wiki"].get("temperature", 0.2)
+ENABLE_THINKING = CONFIG["wiki"].get("enable_thinking", False)
 
-print(f"[Config] chunk_size_words={CHUNK_SIZE_WORDS}, max_tokens={MAX_TOKENS}, temperature={TEMPERATURE}")
+# Calculate chunk_size and max_tokens from max_context_token
+MAX_CONTEXT_TOKEN = CONFIG["wiki"].get("max_context_token", 4096)
+# Reserve ~33% for output tokens, use ~67% for input context
+MAX_TOKENS = max(512, MAX_CONTEXT_TOKEN // 3)
+# Estimate ~1.3 tokens per word on average
+INPUT_CONTEXT_TOKENS = MAX_CONTEXT_TOKEN * 2 // 3
+CHUNK_SIZE_WORDS = max(500, INPUT_CONTEXT_TOKENS // 1.3)
+
+# Convert to int for clarity
+CHUNK_SIZE_WORDS = int(CHUNK_SIZE_WORDS)
+MAX_TOKENS = int(MAX_TOKENS)
+
+# Display calculated parameters at startup
+print("[Config] Parameters:")
+print(f"  max_context_token (from config): {MAX_CONTEXT_TOKEN}")
+print(f"  temperature (from config): {TEMPERATURE}")
+print(f"  enable_thinking (from config): {ENABLE_THINKING}")
+print("[Calculated] Derived parameters:")
+print(f"  max_tokens: {MAX_TOKENS} (33% of context for output)")
+print(f"  chunk_size_words: {CHUNK_SIZE_WORDS} (67% of context for input, ~1.3 tokens/word)")
+print()
 
 def get_file_hash(filepath):
     hasher = hashlib.md5()
@@ -81,16 +100,33 @@ def chunk_text(text, size=CHUNK_SIZE_WORDS):
 
 def call_llm(system_prompt, user_prompt):
     """Call the LLM. Raises on error — callers must handle failures explicitly."""
-    response = CLIENT.chat.completions.create(
-        model=MODEL,
-        messages=[
+    request_kwargs = {
+        "model": MODEL,
+        "messages": [
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_prompt}
         ],
-        temperature=TEMPERATURE,
-        max_tokens=MAX_TOKENS,
-    )
-    return response.choices[0].message.content.strip()
+        "temperature": TEMPERATURE,
+        "max_tokens": MAX_TOKENS,
+    }
+    
+    # Add thinking parameter if enabled (OpenAI-compatible API)
+    if ENABLE_THINKING:
+        request_kwargs["thinking"] = {"type": "enabled", "budget_tokens": MAX_CONTEXT_TOKEN // 2}
+    
+    response = CLIENT.chat.completions.create(**request_kwargs)
+    
+    # Extract text content, skipping any thinking blocks
+    if hasattr(response.choices[0].message, 'content') and isinstance(response.choices[0].message.content, list):
+        # Multiple content blocks (thinking + text)
+        text_content = ""
+        for block in response.choices[0].message.content:
+            if block.type == "text":
+                text_content += block.text + " "
+        return text_content.strip()
+    else:
+        # Single text response
+        return response.choices[0].message.content.strip()
 
 def extract_concepts(chunk):
     """Extract concept names from a chunk. Raises on LLM failure."""

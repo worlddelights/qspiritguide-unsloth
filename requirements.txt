@@ -9,3 +9,6 @@ mlx-tune
 openai
 PyMuPDF
 trafilatura
+tqdm
+ebooklib
+beautifulsoup4

@@ -3,6 +3,14 @@ import json
 import hashlib
 import re
 from tqdm import tqdm
+import fitz  # PyMuPDF
+try:
+    import ebooklib
+    from ebooklib import epub
+    from bs4 import BeautifulSoup
+    EPUB_SUPPORT = True
+except ImportError:
+    EPUB_SUPPORT = False
 from openai import OpenAI
 
 # Configuration
@@ -25,6 +33,42 @@ def get_file_hash(filepath):
         buf = f.read()
         hasher.update(buf)
     return hasher.hexdigest()
+
+def extract_text_from_pdf(filepath):
+    """Extract plain text from a PDF using PyMuPDF."""
+    doc = fitz.open(filepath)
+    parts = []
+    for page in doc:
+        parts.append(page.get_text())
+    doc.close()
+    return "\n".join(parts)
+
+def extract_text_from_epub(filepath):
+    """Extract plain text from an EPUB using ebooklib + BeautifulSoup."""
+    if not EPUB_SUPPORT:
+        raise ImportError(
+            "ebooklib and beautifulsoup4 are required for EPUB support. "
+            "Install them with: uv add ebooklib beautifulsoup4"
+        )
+    book = epub.read_epub(filepath)
+    parts = []
+    for item in book.get_items_of_type(ebooklib.ITEM_DOCUMENT):
+        soup = BeautifulSoup(item.get_content(), "html.parser")
+        text = soup.get_text(separator=" ", strip=True)
+        if text:
+            parts.append(text)
+    return "\n".join(parts)
+
+def read_raw_file(filepath):
+    """Read a raw file and return its text content, dispatching by extension."""
+    ext = os.path.splitext(filepath)[1].lower()
+    if ext == ".pdf":
+        return extract_text_from_pdf(filepath)
+    elif ext == ".epub":
+        return extract_text_from_epub(filepath)
+    else:  # .txt, .md
+        with open(filepath, "r", encoding="utf-8", errors="replace") as f:
+            return f.read()
 
 def chunk_text(text, size=CHUNK_SIZE_WORDS):
     words = text.split()
@@ -109,33 +153,43 @@ def main():
         with open(STATE_FILE, 'r') as f:
             state = json.load(f)
 
-    raw_files = [f for f in os.listdir(RAW_DATA_DIR) if f.endswith(('.txt', '.md'))]
-    print(f"Found {len(raw_files)} raw files: {raw_files}")
-    
-    for filename in tqdm(raw_files, desc="Processing raw files"):
+    raw_files = sorted([f for f in os.listdir(RAW_DATA_DIR) if f.endswith(('.txt', '.md', '.pdf', '.epub'))])
+    pending = [f for f in raw_files if state.get(f) != get_file_hash(os.path.join(RAW_DATA_DIR, f))]
+    print(f"Found {len(raw_files)} raw files total, {len(pending)} pending.")
+
+    for filename in raw_files:
         filepath = os.path.join(RAW_DATA_DIR, filename)
         current_hash = get_file_hash(filepath)
-        
+
         if state.get(filename) == current_hash:
             print(f"Skipping {filename} (already processed)")
             continue
-            
+
         print(f"\nProcessing {filename}...")
-        with open(filepath, 'r') as f:
-            data = f.read()
-            
+        data = read_raw_file(filepath)
+
         chunks = list(chunk_text(data))
         print(f"Split {filename} into {len(chunks)} chunks")
-        for chunk in chunks:
+        for i, chunk in enumerate(chunks, 1):
+            print(f"  Chunk {i}/{len(chunks)}")
             concepts = extract_concepts(chunk)
-            print(f"  Chunk concepts: {concepts}")
+            print(f"  Concepts: {concepts}")
             for concept in concepts:
                 print(f"    Processing concept: {concept}")
                 process_concept(concept, chunk)
-                
+
         state[filename] = current_hash
         with open(STATE_FILE, 'w') as f:
             json.dump(state, f, indent=2)
+
+        remaining = [f for f in raw_files if state.get(f) != get_file_hash(os.path.join(RAW_DATA_DIR, f))]
+        print(f"\n✅  Done with '{filename}'.")
+        if remaining:
+            print(f"   {len(remaining)} file(s) still pending: {remaining}")
+            print("   Review the wiki/ output, then re-run to continue.")
+        else:
+            print("   All files have been processed.")
+        return  # exit after one new file so the human can review
 
 if __name__ == "__main__":
     main()

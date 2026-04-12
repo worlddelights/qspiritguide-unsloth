@@ -4,6 +4,30 @@ This repository implements a high-quality "Wiki-First" fine-tuning pipeline.
 
 Instead of training on messy raw data, we use a high-capacity LLM (the **Librarian**) to synthesize raw scrapes into a clean, distraction-free Knowledge Base (Wiki). This Wiki is then used to generate factual, high-density training data.
 
+## 🛠️ Installation & Set Up
+
+1. **Create and activate a virtual environment:**
+   ```bash
+   uv venv
+   source .venv/bin/activate
+   ```
+
+2. **Select Python Interpreter in VSCode:**
+   - Press `Cmd+Shift+P` (Mac) or `Ctrl+Shift+P` (Windows/Linux).
+   - Type **"Python: Select Interpreter"**.
+   - Select the one located in the project's `.venv` folder. This ensures all tools (linting, notebook kernels) use the correct environment.
+
+3. **Install dependencies:**
+   ```bash
+   uv pip install -r requirements.txt
+   ```
+   *(Note: For Apple Silicon Macs, `mlx-tune` is automatically included to support local fine-tuning via the MLX framework.)*
+
+4. **Set Up LM-Studio (The "Librarian"):**
+   - Install and open [LM-Studio](https://lmstudio.ai/).
+   - Load your preferred high-capacity model (e.g., Qwen2, Llama 3).
+   - Navigate to the **Local Server** tab and click **Start Server**.
+
 ## ⚙️ Configuration
 
 Settings for LM-Studio and processing are managed in [config.json](file:///Users/adir1/git/qspiritguide-unsloth/config.json).
@@ -75,5 +99,6 @@ To export your fine-tuned model for use in the browser:
 1. Ensure the model is saved to `model_16bit` in the training script.
 2. Run the conversion:
    ```bash
+   uv pip install 'optimum[exporters]'
    optimum-cli export onnx --model ./model_16bit ./onnx_output
    ```

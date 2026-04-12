@@ -1,7 +1,44 @@
 # Add URLs you want to download below, one per line.
 # Example: https://en.wikipedia.org/wiki/Quantum_mechanics
-https://sethcenter.com/glossary/
-https://en.wikipedia.org/wiki/Quantum_mechanics
-https://www.llresearch.org/channeling/2026/0228
-https://www.llresearch.org/channeling/2026/0314
-https://www.llresearch.org/channeling/2025/1213
+
+# https://sethcenter.com/glossary/
+# https://en.wikipedia.org/wiki/Quantum_mechanics
+# https://www.llresearch.org/channeling/2026/0228
+# https://www.llresearch.org/channeling/2026/0314
+# https://www.llresearch.org/channeling/2025/1213
+# https://en.wikipedia.org/wiki/Quantum_field_theory
+# https://en.wikipedia.org/wiki/Double-slit_experiment
+# https://www.blavatskytrust.org.uk/html/the_great_beyond/introduction.htm
+# https://www.blavatskytrust.org.uk/html/the_great_beyond/ch2.htm
+# https://www.blavatskytrust.org.uk/html/the_great_beyond/ch3.htm
+# https://www.blavatskytrust.org.uk/html/the_great_beyond/ch4.htm
+# https://www.blavatskytrust.org.uk/html/the_great_beyond/ch5.htm
+# https://www.blavatskytrust.org.uk/html/the_great_beyond/ch6.htm
+# https://www.blavatskytrust.org.uk/html/the_great_beyond/ch7.htm
+# https://www.blavatskytrust.org.uk/html/the_great_beyond/ch8.htm
+# https://www.blavatskytrust.org.uk/html/the_great_beyond/ch9.htm
+# https://www.blavatskytrust.org.uk/html/the_great_beyond/ch10.htm
+# https://www.blavatskytrust.org.uk/html/the_great_beyond/ch11.htm
+# https://www.blavatskytrust.org.uk/html/the_great_beyond/ch12.htm
+# https://www.blavatskytrust.org.uk/html/the_great_beyond/ch13.htm
+# https://www.blavatskytrust.org.uk/html/the_great_beyond/ch14.htm
+# https://www.blavatskytrust.org.uk/html/the_great_beyond/ch15.htm
+# https://www.blavatskytrust.org.uk/html/the_great_beyond/ch16.htm
+# https://www.blavatskytrust.org.uk/html/the_great_beyond/ch17.htm
+# https://www.bashar.org/principles
+# https://www.blavatskytrust.org.uk/html/booklets/life_death_dreams_1.htm
+# https://www.blavatskytrust.org.uk/html/deity_cosmos_and_man/dcm_p1_ch1.htm
+# https://www.blavatskytrust.org.uk/html/deity_cosmos_and_man/dcm_p1_ch2.htm
+# https://www.blavatskytrust.org.uk/html/deity_cosmos_and_man/dcm_p1_ch3.htm
+# https://www.blavatskytrust.org.uk/html/deity_cosmos_and_man/dcm_p1_ch4.htm
+# https://www.blavatskytrust.org.uk/html/deity_cosmos_and_man/dcm_p1_ch5.htm
+# https://www.blavatskytrust.org.uk/html/deity_cosmos_and_man/dcm_p1_ch6.htm
+# https://www.blavatskytrust.org.uk/html/deity_cosmos_and_man/dcm_p1_ch7.htm
+# https://www.blavatskytrust.org.uk/html/deity_cosmos_and_man/dcm_p1_ch8.htm
+# https://www.blavatskytrust.org.uk/html/deity_cosmos_and_man/dcm_p1_ch9.htm
+# https://www.blavatskytrust.org.uk/html/deity_cosmos_and_man/dcm_p1_ch10.htm
+# https://www.blavatskytrust.org.uk/html/deity_cosmos_and_man/dcm_p1_ch11.htm
+# https://www.blavatskytrust.org.uk/html/deity_cosmos_and_man/dcm_p1_ch12.htm
+# https://www.blavatskytrust.org.uk/html/deity_cosmos_and_man/dcm_p1_ch13.htm
+# https://www.blavatskytrust.org.uk/html/deity_cosmos_and_man/dcm_p2_ch1.htm
+# https://www.blavatskytrust.org.uk/html/deity_cosmos_and_man/dcm_p2_ch2.htm

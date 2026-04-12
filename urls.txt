@@ -1,0 +1,7 @@
+# Add URLs you want to download below, one per line.
+# Example: https://en.wikipedia.org/wiki/Quantum_mechanics
+https://sethcenter.com/glossary/
+https://en.wikipedia.org/wiki/Quantum_mechanics
+https://www.llresearch.org/channeling/2026/0228
+https://www.llresearch.org/channeling/2026/0314
+https://www.llresearch.org/channeling/2025/1213

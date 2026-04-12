@@ -1,0 +1,10 @@
+{
+  "lm_studio": {
+    "base_url": "http://localhost:1234/v1",
+    "api_key": "lm-studio",
+    "model": "Gemini4"
+  },
+  "wiki": {
+    "chunk_size_words": 8000
+  }
+}

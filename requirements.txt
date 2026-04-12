@@ -8,3 +8,4 @@ ipykernel
 mlx-tune
 openai
 PyMuPDF
+trafilatura

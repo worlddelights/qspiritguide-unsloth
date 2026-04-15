@@ -24,6 +24,8 @@ CLIENT = OpenAI(
 MODEL = CONFIG["lm_studio"]["model"]
 RAW_DATA_DIR = "raw_data"
 WIKI_DIR = "wiki"
+HISTORY_DIR = os.path.join(WIKI_DIR, "history")
+IGNORE_DIR = os.path.join(WIKI_DIR, "ignore")
 STATE_FILE = ".wiki_state.json"
 TEMPERATURE = CONFIG["wiki"].get("temperature", 0.2)
 ENABLE_THINKING = CONFIG["wiki"].get("enable_thinking", False)
@@ -138,7 +140,12 @@ def process_concept(concept_name, chunk_text):
     """Write/update wiki files for a concept. Raises on LLM failure."""
     safe_name = re.sub(r'[^a-zA-Z0-9_\-]', '_', concept_name.lower().replace(" ", "_"))
     main_file = os.path.join(WIKI_DIR, f"{safe_name}.md")
-    hist_file = os.path.join(WIKI_DIR, f"history_{safe_name}.md")
+    hist_file = os.path.join(HISTORY_DIR, f"{safe_name}.md")
+    
+    # Skip if concept is in ignore directory
+    ignore_file = os.path.join(IGNORE_DIR, f"{safe_name}.md")
+    if os.path.exists(ignore_file):
+        return  # Concept is explicitly ignored
 
     existing_main = ""
     if os.path.exists(main_file):
@@ -157,7 +164,8 @@ RULES:
 1. FOCUS: Only include the most current, accurate, and stable understanding of the concept.
 2. DISTRACTION-FREE: Stripped of any source URLs, mentions of 'The Seth Material', page numbers, or external attributions. Just the knowledge.
 3. EVOLUTION: If the new text describes an evolution or change in how the concept was understood over time (e.g. 'Jane once thought X, but now knows Y'), provide that separately.
-4. FORMAT: Return your response in two clearly marked blocks:
+4. NO PLACEHOLDER MESSAGES: If the new information doesn't add meaningful content, return the existing article EXACTLY. Never write meta-commentary like "no new information was provided" or "remains unchanged".
+5. FORMAT: Return your response in two clearly marked blocks:
 ===CURRENT===
 [The refined article text]
 ===HISTORY===
@@ -174,9 +182,23 @@ RULES:
 
     if main_match:
         new_main = main_match.group(1).strip()
-        if new_main:
+        # Check for placeholder messages that indicate no real change
+        placeholder_phrases = [
+            "no specific information",
+            "no new information",
+            "remains unchanged",
+            "no additional information",
+            "no further information"
+        ]
+        is_placeholder = any(phrase.lower() in new_main.lower() for phrase in placeholder_phrases)
+        
+        if new_main and not is_placeholder:
             with open(main_file, 'w') as f:
                 f.write(new_main)
+        elif is_placeholder and not existing_main:
+            # If it's a placeholder and there's no existing content, still write it
+            # (better to have something than nothing)
+            pass
 
     if hist_match:
         new_hist = hist_match.group(1).strip()
@@ -192,6 +214,8 @@ def main():
             state = json.load(f)
 
     os.makedirs(WIKI_DIR, exist_ok=True)
+    os.makedirs(HISTORY_DIR, exist_ok=True)
+    os.makedirs(IGNORE_DIR, exist_ok=True)
     raw_files = sorted([f for f in os.listdir(RAW_DATA_DIR) if f.endswith(('.txt', '.md', '.pdf', '.epub'))])
     pending = [f for f in raw_files if state.get(f) != get_file_hash(os.path.join(RAW_DATA_DIR, f))]
     print(f"Found {len(raw_files)} raw files total, {len(pending)} pending.")

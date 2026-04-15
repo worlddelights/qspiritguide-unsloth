@@ -47,40 +47,45 @@
 # https://www.blavatskytrust.org.uk/html/deity_cosmos_and_man/dcm_p2_ch5.htm
 # https://www.blavatskytrust.org.uk/html/deity_cosmos_and_man/dcm_p2_ch6.htm
 # https://www.blavatskytrust.org.uk/html/deity_cosmos_and_man/dcm_p2_ch7.htm
-https://en.wikipedia.org/wiki/Sa%E1%B9%83s%C4%81ra
-https://en.wikipedia.org/wiki/Sentient_beings_(Buddhism)
-https://en.wikipedia.org/wiki/Threefold_Training
-https://en.wikipedia.org/wiki/Nirvana_(Buddhism)
-https://en.wikipedia.org/wiki/Ajahn_Brahm
-https://www.blavatskytrust.org.uk/html/deity_cosmos_and_man/dcm_p2_ch8.htm
-https://www.blavatskytrust.org.uk/html/deity_cosmos_and_man/dcm_p2_ch9.htm
-https://www.blavatskytrust.org.uk/html/deity_cosmos_and_man/dcm_p2_ch10.htm
-https://www.blavatskytrust.org.uk/html/deity_cosmos_and_man/dcm_p2_ch11.htm
-https://www.blavatskytrust.org.uk/html/deity_cosmos_and_man/dcm_p2_ch12.htm
-https://www.blavatskytrust.org.uk/html/deity_cosmos_and_man/dcm_p2_ch13.htm
-https://www.blavatskytrust.org.uk/html/deity_cosmos_and_man/dcm_p2_ch14.htm
-https://www.blavatskyarchives.com/aboutspiritualism.htm
-https://www.blavatskyarchives.com/anonmadblapower.htm
-https://en.wikipedia.org/wiki/Gaia
-https://en.wikipedia.org/wiki/Greek_primordial_deities
-https://en.wikipedia.org/wiki/Chronos
-https://en.wikipedia.org/wiki/Aether_(mythology)
-https://en.wikipedia.org/wiki/Loki
-https://en.wikipedia.org/wiki/Mythologies_of_the_Indigenous_peoples_of_the_Americas
-https://en.wikipedia.org/wiki/%C5%8Cmete%C5%8Dtl
-https://www.nicollhellen.com/l/kabbalah-and-hermetic-qabalah-a-comparative-analysis-of-philosophical-and-psychological-implications-on-the-concept-of-polarity-within-the-tree-of-life/
-https://en.wikipedia.org/wiki/Hermetic_Qabalah
-https://en.wikipedia.org/wiki/The_Kybalion
-https://en.wikipedia.org/wiki/New_Thought
-https://en.wikipedia.org/wiki/Law_of_attraction_(New_Thought)
-https://en.wikipedia.org/wiki/Optimism
-https://en.wikipedia.org/wiki/Fibromyalgia
-https://en.wikipedia.org/wiki/Qigong
-https://en.wikipedia.org/wiki/Religion
-https://en.wikipedia.org/wiki/Zoroastrianism
-https://en.wikipedia.org/wiki/Ahura_Mazda
-https://www.contemplation.info/qabalah-tree-of-life
-https://www.contemplation.info/unified-field-nonduality
-https://www.contemplation.info/mindfulness-meditation
-https://www.contemplation.info/advanced-chakra-meditation
-https://en.wikipedia.org/wiki/Placebo
+# https://en.wikipedia.org/wiki/Sa%E1%B9%83s%C4%81ra
+# https://en.wikipedia.org/wiki/Sentient_beings_(Buddhism)
+# https://en.wikipedia.org/wiki/Threefold_Training
+# https://en.wikipedia.org/wiki/Nirvana_(Buddhism)
+# https://en.wikipedia.org/wiki/Ajahn_Brahm
+# https://www.blavatskytrust.org.uk/html/deity_cosmos_and_man/dcm_p2_ch8.htm
+# https://www.blavatskytrust.org.uk/html/deity_cosmos_and_man/dcm_p2_ch9.htm
+# https://www.blavatskytrust.org.uk/html/deity_cosmos_and_man/dcm_p2_ch10.htm
+# https://www.blavatskytrust.org.uk/html/deity_cosmos_and_man/dcm_p2_ch11.htm
+# https://www.blavatskytrust.org.uk/html/deity_cosmos_and_man/dcm_p2_ch12.htm
+# https://www.blavatskytrust.org.uk/html/deity_cosmos_and_man/dcm_p2_ch13.htm
+# https://www.blavatskytrust.org.uk/html/deity_cosmos_and_man/dcm_p2_ch14.htm
+# https://www.blavatskyarchives.com/aboutspiritualism.htm
+# https://www.blavatskyarchives.com/anonmadblapower.htm
+# https://en.wikipedia.org/wiki/Gaia
+# https://en.wikipedia.org/wiki/Greek_primordial_deities
+# https://en.wikipedia.org/wiki/Chronos
+# https://en.wikipedia.org/wiki/Aether_(mythology)
+# https://en.wikipedia.org/wiki/Loki
+# https://en.wikipedia.org/wiki/Mythologies_of_the_Indigenous_peoples_of_the_Americas
+# https://en.wikipedia.org/wiki/%C5%8Cmete%C5%8Dtl
+# https://www.nicollhellen.com/l/kabbalah-and-hermetic-qabalah-a-comparative-analysis-of-philosophical-and-psychological-implications-on-the-concept-of-polarity-within-the-tree-of-life/
+# https://en.wikipedia.org/wiki/Hermetic_Qabalah
+# https://en.wikipedia.org/wiki/The_Kybalion
+# https://en.wikipedia.org/wiki/New_Thought
+# https://en.wikipedia.org/wiki/Law_of_attraction_(New_Thought)
+# https://en.wikipedia.org/wiki/Optimism
+# https://en.wikipedia.org/wiki/Fibromyalgia
+# https://en.wikipedia.org/wiki/Qigong
+# https://en.wikipedia.org/wiki/Religion
+# https://en.wikipedia.org/wiki/Zoroastrianism
+# https://en.wikipedia.org/wiki/Ahura_Mazda
+# https://www.contemplation.info/qabalah-tree-of-life
+# https://www.contemplation.info/unified-field-nonduality
+# https://www.contemplation.info/mindfulness-meditation
+# https://www.contemplation.info/advanced-chakra-meditation
+# https://en.wikipedia.org/wiki/Placebo
+# https://en.wikipedia.org/wiki/Analytical_psychology
+# https://en.wikipedia.org/wiki/Carl_Jung
+# https://en.wikipedia.org/wiki/Collective_unconscious
+# https://en.wikipedia.org/wiki/Psychoanalysis
+# https://en.wikipedia.org/wiki/Taoism

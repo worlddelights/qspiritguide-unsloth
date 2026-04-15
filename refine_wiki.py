@@ -30,7 +30,7 @@ def call_llm(system_prompt, user_prompt):
         return None
 
 def get_wiki_files():
-    files = [f for f in os.listdir(WIKI_DIR) if f.endswith('.md') and not f.startswith('history_')]
+    files = [f for f in os.listdir(WIKI_DIR) if f.endswith('.md') and not f.startswith('history_') and f != 'ignore']
     return files
 
 def merge_concepts(primary, secondary):

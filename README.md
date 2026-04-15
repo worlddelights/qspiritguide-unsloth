@@ -35,7 +35,28 @@ Settings for LM-Studio and processing are managed in [config.json](file:///Users
 - `model`: The model name running in LM-Studio (e.g., `Gemini4`).
 - `chunk_size_words`: The size of text chunks for processing (Optimized for 32k context).
 
-## 🚀 The workflow
+## � Ignoring Concepts
+
+If you want to exclude certain concepts from the pipeline (preventing hours of unnecessary LLM processing), you can move them to `wiki/ignore/`:
+
+```bash
+# See all active and ignored concepts
+python manage_ignore.py list
+
+# Ignore a concept (prevents compile_wiki.py, refine_wiki.py, and distill_wiki.py from processing it)
+python manage_ignore.py ignore concept_name
+
+# Re-enable a concept
+python manage_ignore.py unignore concept_name
+```
+
+**How it works:**
+- When you run `python manage_ignore.py ignore alchemy`, it moves `wiki/alchemy.md` to `wiki/ignore/alchemy.md`
+- All pipeline scripts automatically skip anything in `wiki/ignore/`, preventing wasted LLM calls during synthesis and refinement
+- The concept is completely excluded from training data generation
+- You can re-enable it anytime by running `unignore`
+
+## �🚀 The workflow
 
 ### 1. Ingest Raw Data
 Add URLs to `urls.txt` and run:

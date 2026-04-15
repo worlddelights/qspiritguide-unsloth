@@ -35,7 +35,8 @@ def main():
     if not os.path.exists("data"):
         os.makedirs("data")
 
-    # Get all "Current Understanding" articles (exclude history_)
+    # Get all \"Current Understanding\" articles (exclude history_)
+    # Files in wiki/ignore/ subdirectory won't appear in os.listdir(WIKI_DIR)
     wiki_files = [f for f in os.listdir(WIKI_DIR) if f.endswith('.md') and not f.startswith('history_')]
     
     if not wiki_files:

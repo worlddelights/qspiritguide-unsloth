@@ -1,3 +1,4 @@
+import argparse
 import os
 import json
 import re
@@ -32,6 +33,34 @@ def call_llm(system_prompt, user_prompt):
 def get_wiki_files():
     files = [f for f in os.listdir(WIKI_DIR) if f.endswith('.md') and not f.startswith('history_') and f != 'ignore']
     return files
+
+def canonical_name(name):
+    name = os.path.splitext(name)[0]
+    name = name.strip().lower()
+    name = re.sub(r'[_\-\s]+', ' ', name)
+    name = re.sub(r'[^a-z0-9]+', '', name)
+    return name
+
+def build_name_map(files):
+    name_map = {}
+    collisions = {}
+    for f in files:
+        key = canonical_name(f)
+        if key in name_map:
+            collisions.setdefault(key, []).append(f)
+            collisions[key].append(name_map[key])
+        else:
+            name_map[key] = f
+    return name_map, collisions
+
+def resolve_wiki_name(candidate, files, name_map):
+    if candidate in files:
+        return candidate
+
+    key = canonical_name(candidate)
+    if key in name_map:
+        return name_map[key]
+    return None
 
 def merge_concepts(primary, secondary):
     print(f"Merging {secondary} into {primary}...")
@@ -73,27 +102,91 @@ def merge_concepts(primary, secondary):
                     f.write(hist_result)
             os.remove(secondary_hist)
 
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description="Merge wiki article files. If article names are provided, the first is the primary target and the rest are merged into it."
+    )
+    parser.add_argument(
+        "articles",
+        nargs="*",
+        help="Wiki article filenames to merge. First is primary; remaining are merged into it."
+    )
+    return parser.parse_args()
+
+
+def process_explicit_merge(articles, files, name_map):
+    primary_candidate = articles[0]
+    primary = resolve_wiki_name(primary_candidate, files, name_map)
+    if not primary:
+        print(f"Primary article not found: {primary_candidate}")
+        return
+
+    for secondary_candidate in articles[1:]:
+        secondary = resolve_wiki_name(secondary_candidate, files, name_map)
+        if not secondary:
+            print(f"Skipping merge: article not found: {secondary_candidate}")
+            continue
+        if secondary == primary:
+            print(f"Skipping merge: secondary article is the same as primary: {secondary_candidate}")
+            continue
+        merge_concepts(primary, secondary)
+
+
 def main():
+    args = parse_args()
     files = get_wiki_files()
     if not files:
         print("No wiki files found.")
         return
 
+    name_map, collisions = build_name_map(files)
+    if collisions:
+        print("Warning: canonical name collisions detected for these file groups:")
+        for key, group in collisions.items():
+            print(f"  {key}: {sorted(set(group))}")
+
+    if args.articles:
+        if len(args.articles) < 2:
+            print("Please provide at least two article names when using explicit merge mode.")
+            print("Usage: python refine_wiki.py primary.md secondary1.md [secondary2.md ...]")
+            return
+
+        process_explicit_merge(args.articles, files, name_map)
+        return
+
     titles_str = ", ".join(files)
-    system_prompt = "You are an expert analyst. Look at this list of knowledge base article titles. Identify any titles that likely refer to the same concept or phenomena from different perspectives and should be merged. Return your suggestions as a JSON array of pairs: [['primary_file.md', 'duplicate_file.md'], ...]. If none, return []."
+    system_prompt = (
+        "You are an expert analyst. Look at this list of knowledge base article titles. "
+        "Identify any titles that likely refer to the same concept or phenomena from different perspectives and should be merged. "
+        "Return your suggestions as a JSON array of pairs: [['primary_file.md', 'duplicate_file.md'], ...]. "
+        "Use the exact file names from the list and do not invent new names. If none, return []."
+    )
     
     suggestions_raw = call_llm(system_prompt, f"Article Titles: {titles_str}")
-    
     try:
         # Clean up JSON if LLM added markdown blocks
         json_str = re.search(r'\[.*\]', suggestions_raw, re.DOTALL).group(0)
         suggestions = json.loads(json_str)
         
         for primary, secondary in suggestions:
-            if os.path.exists(os.path.join(WIKI_DIR, primary)) and os.path.exists(os.path.join(WIKI_DIR, secondary)):
-                merge_concepts(primary, secondary)
+            resolved_primary = resolve_wiki_name(primary, files, name_map)
+            resolved_secondary = resolve_wiki_name(secondary, files, name_map)
+
+            if resolved_primary and resolved_secondary:
+                if resolved_primary != primary:
+                    print(f"Mapped primary '{primary}' -> '{resolved_primary}'")
+                if resolved_secondary != secondary:
+                    print(f"Mapped secondary '{secondary}' -> '{resolved_secondary}'")
+                merge_concepts(resolved_primary, resolved_secondary)
             else:
-                print(f"Skipping merge: {primary} or {secondary} not found.")
+                missing = []
+                if not resolved_primary:
+                    missing.append(primary)
+                if not resolved_secondary:
+                    missing.append(secondary)
+                print(f"Skipping merge: {', '.join(missing)} not found (or could not be mapped to an existing file).")
+                print(f"  Candidate pair: {primary}, {secondary}")
+                print(f"  Existing wiki files: {titles_str}")
                 
     except Exception as e:
         print(f"Failed to parse suggestions: {e}")

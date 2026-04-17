@@ -63,7 +63,13 @@ Add URLs to `urls.txt` and run:
 ```bash
 python fetch_webpages.py
 ```
-Or place your own `.md`, `.txt`, or `.pdf` files into `raw_data/`.
+Or place your own raw files into `raw_data/`.
+
+Supported raw data formats:
+- `.md`
+- `.txt`
+- `.pdf`
+- `.epub` (supported by `compile_wiki.py` via `ebooklib` + `beautifulsoup4`)
 
 ### 2. Compile the Knowledge Base (The Wiki)
 Synthesize raw data into "Current Understanding" articles. This step also separates historical evolution into separate files to keep the training source pure.

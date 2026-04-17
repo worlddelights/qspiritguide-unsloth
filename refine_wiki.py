@@ -47,11 +47,35 @@ def build_name_map(files):
     for f in files:
         key = canonical_name(f)
         if key in name_map:
-            collisions.setdefault(key, []).append(f)
-            collisions[key].append(name_map[key])
+            group = collisions.setdefault(key, [])
+            if name_map[key] not in group:
+                group.append(name_map[key])
+            if f not in group:
+                group.append(f)
         else:
             name_map[key] = f
     return name_map, collisions
+
+
+def auto_merge_collisions(collisions):
+    for key, group in collisions.items():
+        unique_group = []
+        for f in group:
+            if f not in unique_group:
+                unique_group.append(f)
+
+        if len(unique_group) < 2:
+            continue
+
+        primary = unique_group[0]
+        print(f"Auto-merging canonical collision group for key '{key}': {unique_group}")
+        for secondary in unique_group[1:]:
+            if secondary == primary:
+                continue
+            merged = merge_concepts(primary, secondary)
+            if not merged:
+                print(f"Failed to auto-merge {secondary} into {primary}.")
+
 
 def resolve_wiki_name(candidate, files, name_map):
     if candidate in files:
@@ -101,6 +125,9 @@ def merge_concepts(primary, secondary):
                 with open(primary_hist, 'w') as f:
                     f.write(hist_result)
             os.remove(secondary_hist)
+        return True
+
+    return False
 
 def parse_args():
     parser = argparse.ArgumentParser(
@@ -144,6 +171,14 @@ def main():
         print("Warning: canonical name collisions detected for these file groups:")
         for key, group in collisions.items():
             print(f"  {key}: {sorted(set(group))}")
+
+        auto_merge_collisions(collisions)
+        files = get_wiki_files()
+        name_map, collisions = build_name_map(files)
+        if collisions:
+            print("Warning: canonical name collisions remain after auto-merge:")
+            for key, group in collisions.items():
+                print(f"  {key}: {sorted(set(group))}")
 
     if args.articles:
         if len(args.articles) < 2:

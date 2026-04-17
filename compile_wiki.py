@@ -61,11 +61,23 @@ def get_file_hash(filepath):
 
 def extract_text_from_pdf(filepath):
     """Extract plain text from a PDF using PyMuPDF."""
-    doc = fitz.open(filepath)
+    try:
+        doc = fitz.open(filepath)
+    except Exception as e:
+        raise RuntimeError(f"Unable to open PDF '{filepath}': {e}") from e
+
     parts = []
-    for page in doc:
-        parts.append(page.get_text())
-    doc.close()
+    try:
+        for page_number, page in enumerate(doc, start=1):
+            text = page.get_text("text") or page.get_text()
+            if not text:
+                blocks = page.get_text("blocks")
+                if isinstance(blocks, list):
+                    text = "\n".join(block[4] for block in blocks if len(block) > 4 and block[4])
+            parts.append(text or "")
+    finally:
+        doc.close()
+
     return "\n".join(parts)
 
 def extract_text_from_epub(filepath):
@@ -87,13 +99,17 @@ def extract_text_from_epub(filepath):
 def read_raw_file(filepath):
     """Read a raw file and return its text content, dispatching by extension."""
     ext = os.path.splitext(filepath)[1].lower()
-    if ext == ".pdf":
-        return extract_text_from_pdf(filepath)
-    elif ext == ".epub":
-        return extract_text_from_epub(filepath)
-    else:  # .txt, .md
-        with open(filepath, "r", encoding="utf-8", errors="replace") as f:
-            return f.read()
+    try:
+        if ext == ".pdf":
+            return extract_text_from_pdf(filepath)
+        elif ext == ".epub":
+            return extract_text_from_epub(filepath)
+        else:  # .txt, .md
+            with open(filepath, "r", encoding="utf-8", errors="replace") as f:
+                return f.read()
+    except Exception as e:
+        raise RuntimeError(f"Failed to read raw file '{filepath}': {e}") from e
+
 
 def chunk_text(text, size=CHUNK_SIZE_WORDS):
     words = text.split()
@@ -233,6 +249,12 @@ def main():
 
         chunks = list(chunk_text(data))
         print(f"Split {filename} into {len(chunks)} chunks")
+        if not chunks:
+            raise ValueError(
+                f"No text chunks were created for '{filename}'. "
+                f"Extracted text length: {len(data)} characters. "
+                "The PDF may contain only scanned images or otherwise unreadable text."
+            )
         file_ok = True
         for i, chunk in enumerate(chunks, 1):
             print(f"  Chunk {i}/{len(chunks)}")

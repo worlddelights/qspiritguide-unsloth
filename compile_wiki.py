@@ -180,7 +180,7 @@ RULES:
 1. FOCUS: Only include the most current, accurate, and stable understanding of the concept.
 2. DISTRACTION-FREE: Stripped of any source URLs, mentions of 'The Seth Material', page numbers, or external attributions. Just the knowledge.
 3. EVOLUTION: If the new text describes an evolution or change in how the concept was understood over time (e.g. 'Jane once thought X, but now knows Y'), provide that separately.
-4. NO PLACEHOLDER MESSAGES: If the new information doesn't add meaningful content, return the existing article EXACTLY. Never write meta-commentary like "no new information was provided" or "remains unchanged".
+4. CRITICAL: If no meaningful new content exists, just repeat the existing article verbatim in the ===CURRENT=== section.
 5. FORMAT: Return your response in two clearly marked blocks:
 ===CURRENT===
 [The refined article text]
@@ -204,9 +204,19 @@ RULES:
             "no new information",
             "remains unchanged",
             "no additional information",
-            "no further information"
+            "no further information",
+            "no conceptual updates",
+            "no updates were provided",
+            "no content provided",
+            "no material",
+            "nothing to add",
+            "no relevant",
         ]
         is_placeholder = any(phrase.lower() in new_main.lower() for phrase in placeholder_phrases)
+        
+        # Also check for generic parenthesized "no" messages
+        if not is_placeholder and re.match(r'^\([^)]*[Nn]o\s+\w+', new_main):
+            is_placeholder = True
         
         if new_main and not is_placeholder:
             with open(main_file, 'w') as f:

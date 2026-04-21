@@ -16,6 +16,16 @@ MODEL = CONFIG["lm_studio"]["model"]
 WIKI_DIR = "wiki"
 STAGED_FILE = "data/staged_data.json"
 
+def is_meaningful_content(text):
+    """Validate that text is meaningful (not junk or placeholder)."""
+    if not isinstance(text, str):
+        return False
+    text = text.strip()
+    return (
+        len(text) > 100 and  # At least 100 characters
+        bool(re.search(r'[a-zA-Z]{3,}', text))  # Contains at least one 3+ letter word
+    )
+
 def call_llm(system_prompt, user_prompt):
     try:
         response = CLIENT.chat.completions.create(
@@ -73,12 +83,19 @@ Guidelines:
                 # Clean up JSON if LLM added markdown blocks
                 json_str = re.search(r'\[.*\]', result, re.DOTALL).group(0)
                 pairs = json.loads(json_str)
-                for p in pairs:
-                    # Add review flag as in original pipeline
-                    p["requires_review"] = False
-                    p["review_reason"] = ""
                 
-                staged_data.extend(pairs)
+                # Validate and add only meaningful pairs
+                valid_pairs = []
+                for p in pairs:
+                    if (isinstance(p, dict) and 
+                        is_meaningful_content(p.get("instruction", "")) and
+                        is_meaningful_content(p.get("output", ""))):
+                        # Add review flag as in original pipeline
+                        p["requires_review"] = False
+                        p["review_reason"] = ""
+                        valid_pairs.append(p)
+                
+                staged_data.extend(valid_pairs)
                 
                 # Cumulative save
                 with open(STAGED_FILE, 'w') as f:

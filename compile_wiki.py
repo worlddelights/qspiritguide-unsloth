@@ -198,33 +198,16 @@ RULES:
 
     if main_match:
         new_main = main_match.group(1).strip()
-        # Check for placeholder messages that indicate no real change
-        placeholder_phrases = [
-            "no specific information",
-            "no new information",
-            "remains unchanged",
-            "no additional information",
-            "no further information",
-            "no conceptual updates",
-            "no updates were provided",
-            "no content provided",
-            "no material",
-            "nothing to add",
-            "no relevant",
-        ]
-        is_placeholder = any(phrase.lower() in new_main.lower() for phrase in placeholder_phrases)
         
-        # Also check for generic parenthesized "no" messages
-        if not is_placeholder and re.match(r'^\([^)]*[Nn]o\s+\w+', new_main):
-            is_placeholder = True
+        # Validate content is meaningful (not just symbols or short junk)
+        has_meaningful_content = (
+            len(new_main) > 100 and  # At least 100 characters
+            bool(re.search(r'[a-zA-Z]{3,}', new_main))  # Contains at least one 3+ letter word
+        )
         
-        if new_main and not is_placeholder:
+        if new_main and has_meaningful_content:
             with open(main_file, 'w') as f:
                 f.write(new_main)
-        elif is_placeholder and not existing_main:
-            # If it's a placeholder and there's no existing content, still write it
-            # (better to have something than nothing)
-            pass
 
     if hist_match:
         new_hist = hist_match.group(1).strip()

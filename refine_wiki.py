@@ -15,6 +15,16 @@ CLIENT = OpenAI(
 MODEL = CONFIG["lm_studio"]["model"]
 WIKI_DIR = "wiki"
 
+def is_meaningful_content(text):
+    """Validate that text is meaningful (not junk or placeholder)."""
+    if not isinstance(text, str):
+        return False
+    text = text.strip()
+    return (
+        len(text) > 100 and  # At least 100 characters
+        bool(re.search(r'[a-zA-Z]{3,}', text))  # Contains at least one 3+ letter word
+    )
+
 def call_llm(system_prompt, user_prompt):
     try:
         response = CLIENT.chat.completions.create(
@@ -102,7 +112,7 @@ def merge_concepts(primary, secondary):
     user_prompt = f"Article 1 ({primary}):\n{primary_content}\n\nArticle 2 ({secondary}):\n{secondary_content}"
     
     result = call_llm(system_prompt, user_prompt)
-    if result:
+    if result and is_meaningful_content(result):
         with open(primary_path, 'w') as f:
             f.write(result)
         os.remove(secondary_path)
@@ -121,7 +131,7 @@ def merge_concepts(primary, secondary):
             
             hist_merge_prompt = "Merge these two historical evolution summaries into one."
             hist_result = call_llm(hist_merge_prompt, f"Hist 1:\n{p_hist}\n\nHist 2:\n{s_hist}")
-            if hist_result:
+            if hist_result and is_meaningful_content(hist_result):
                 with open(primary_hist, 'w') as f:
                     f.write(hist_result)
             os.remove(secondary_hist)

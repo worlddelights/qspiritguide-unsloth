@@ -89,6 +89,6 @@
 # https://en.wikipedia.org/wiki/Collective_unconscious
 # https://en.wikipedia.org/wiki/Psychoanalysis
 # https://en.wikipedia.org/wiki/Taoism
-https://en.wikipedia.org/wiki/Luminous_mind
-https://en.wikipedia.org/wiki/Theosophical_mysticism
-https://en.wikipedia.org/wiki/Practical_Kabbalah
+# https://en.wikipedia.org/wiki/Luminous_mind
+# https://en.wikipedia.org/wiki/Theosophical_mysticism
+# https://en.wikipedia.org/wiki/Practical_Kabbalah

@@ -3,3 +3,4 @@ data
 .wiki_state.json
 wiki
 .DS_Store
+.venv

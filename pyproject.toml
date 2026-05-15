@@ -1,0 +1,31 @@
+[project]
+name = "qspiritguide-unsloth"
+version = "0.1.0"
+description = "Q Spirit Guide - Fine-tuning with Unsloth"
+requires-python = ">=3.12"
+dependencies = [
+    "trl",
+    "peft",
+    "accelerate",
+    "transformers",
+    "datasets",
+    "jupyter",
+    "ipykernel",
+    "mlx-tune",
+    "openai",
+    "PyMuPDF",
+    "trafilatura",
+    "tqdm",
+    "ebooklib",
+    "beautifulsoup4",
+    "typing_extensions",
+    "pydantic",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black",
+    "ruff",
+    "mypy",
+]
+

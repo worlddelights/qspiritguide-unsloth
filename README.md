@@ -19,14 +19,39 @@ Instead of training on messy raw data, we use a high-capacity LLM (the **Librari
 
 3. **Install dependencies:**
    ```bash
-   uv pip install -r requirements.txt
+   uv pip install -r uv.lock
    ```
-   *(Note: For Apple Silicon Macs, `mlx-tune` is automatically included to support local fine-tuning via the MLX framework.)*
+   *(Note: Dependencies are managed in `pyproject.toml` with locked versions in `uv.lock`. For Apple Silicon Macs, `mlx-tune` is automatically included to support local fine-tuning via the MLX framework.)*
 
 4. **Set Up LM-Studio (The "Librarian"):**
    - Install and open [LM-Studio](https://lmstudio.ai/).
    - Load your preferred high-capacity model (e.g., Qwen2, Llama 3).
    - Navigate to the **Local Server** tab and click **Start Server**.
+
+### 📦 Dependency Management
+
+This project uses [`uv`](https://docs.astral.sh/uv/) for fast, reliable dependency management.
+
+**Update dependencies** (if you add new packages to `pyproject.toml`):
+```bash
+# Regenerate the lock file after modifying pyproject.toml
+uv pip compile pyproject.toml -o uv.lock
+
+# Install the updated dependencies
+uv pip install -r uv.lock
+```
+
+**Add a new dependency:**
+```bash
+# Edit pyproject.toml to add the package, then:
+uv pip compile pyproject.toml -o uv.lock
+uv pip install -r uv.lock
+```
+
+**View installed packages:**
+```bash
+uv pip list
+```
 
 ## ⚙️ Configuration
 

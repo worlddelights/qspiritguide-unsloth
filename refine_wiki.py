@@ -118,8 +118,9 @@ def merge_concepts(primary, secondary):
         os.remove(secondary_path)
         
         # Also check for history files
-        primary_hist = os.path.join(WIKI_DIR, f"history_{primary}")
-        secondary_hist = os.path.join(WIKI_DIR, f"history_{secondary}")
+        history_dir = os.path.join(WIKI_DIR, "history")
+        primary_hist = os.path.join(history_dir, primary)
+        secondary_hist = os.path.join(history_dir, secondary)
         
         if os.path.exists(secondary_hist):
             with open(secondary_hist, 'r') as f:

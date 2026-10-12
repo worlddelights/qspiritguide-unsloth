@@ -1,6 +1,6 @@
 import json
 
-with open("distill.py", "r") as f:
+with open("distill_wiki.py", "r") as f:
     code = f.read()
 
 # Separate the code into cells (roughly by top-level comments)
@@ -23,7 +23,7 @@ As you review the `data/staged_data.json` buffer, keep the following ChatML best
 
 1. **Maintain Consistent Persona:** Ensure the extracted "assistant" outputs always use the same tone. If your domain is spirituality, the voice should be consistently wise and structured.
 2. **Remove Unnecessary Formatting:** Do not include metadata like "Here is the answer:" in the output. The output should purely be the informational response.
-3. **Handle Ambiguity:** If the LM-Studio model flagged a chunk for review due to conflicting statements regarding quantum physics or new-age theory, explicitly rewrite the output to address *both* perspectives or synthesize a cohesive framework.
+3. **Handle Ambiguity:** If any generated pairs have ambiguous, conflicting, or incorrect statements, edit them to ensure accuracy and structural coherence.
 4. **Length Balancing:** Ensure the `instruction` length varies. Mix short questions (e.g. "Define X") with long instructions (e.g. "Synthesize a framework connecting Y and Z").
 """
 

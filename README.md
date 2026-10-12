@@ -1,156 +1,102 @@
-# QSpiritGuide Unsloth Project (Wiki-First Pipeline)
+# QSpiritGuide Unsloth Project (Wiki-to-Training Pipeline)
 
-This repository implements a high-quality "Wiki-First" fine-tuning pipeline. 
+This project starts with a completed knowledge base in `wiki/`, distills it into reviewed ChatML training data, and fine-tunes a model with Unsloth on an NVIDIA GPU.
 
-Instead of training on messy raw data, we use a high-capacity LLM (the **Librarian**) to synthesize raw scrapes into a clean, distraction-free Knowledge Base (Wiki). This Wiki is then used to generate factual, high-density training data.
+The earlier ingestion, wiki compilation, and refinement stages are intentionally out of scope for this environment.
 
-## 🛠️ Installation & Set Up
+## Installation
 
-1. **Create and activate a virtual environment:**
+1. Install an NVIDIA driver compatible with the CUDA-enabled PyTorch build required by your GPU.
+
+2. Sync the project environment with [uv](https://docs.astral.sh/uv/):
    ```bash
-   uv venv
-   source .venv/bin/activate
+   uv sync
    ```
 
-2. **Select Python Interpreter in VSCode:**
-   - Press `Cmd+Shift+P` (Mac) or `Ctrl+Shift+P` (Windows/Linux).
-   - Type **"Python: Select Interpreter"**.
-   - Select the one located in the project's `.venv` folder. This ensures all tools (linting, notebook kernels) use the correct environment.
-
-3. **Install dependencies:**
-   ```bash
-   uv pip install -r uv.lock
-   ```
-   *(Note: Dependencies are managed in `pyproject.toml` with locked versions in `uv.lock`. For Apple Silicon Macs, `mlx-tune` is automatically included to support local fine-tuning via the MLX framework.)*
-
-4. **Set Up LM-Studio (The "Librarian"):**
+3. Start an LM Studio server with the model configured in `config.json`:
    - Install and open [LM-Studio](https://lmstudio.ai/).
-   - Load your preferred high-capacity model (e.g., Qwen2, Llama 3).
+   - Load an instruction model capable of generating training pairs.
    - Navigate to the **Local Server** tab and click **Start Server**.
 
-### 📦 Dependency Management
-
-This project uses [`uv`](https://docs.astral.sh/uv/) for fast, reliable dependency management.
-
-**Update dependencies** (if you add new packages to `pyproject.toml`):
-```bash
-# Regenerate the lock file after modifying pyproject.toml
-uv pip compile pyproject.toml -o uv.lock
-
-# Install the updated dependencies
-uv pip install -r uv.lock
-```
-
-**Add a new dependency:**
-```bash
-# Edit pyproject.toml to add the package, then:
-uv pip compile pyproject.toml -o uv.lock
-uv pip install -r uv.lock
-```
-
-**View installed packages:**
-```bash
-uv pip list
-```
-
-## ⚙️ Configuration
-
-Settings for LM-Studio and processing are managed in [config.json](file:///Users/adir1/git/qspiritguide-unsloth/config.json).
-- `base_url`: Your LM-Studio endpoint (default `http://localhost:1234/v1`).
-- `model`: The model name running in LM-Studio (e.g., `Gemini4`).
-- `chunk_size_words`: The size of text chunks for processing (Optimized for 32k context).
-
-## � Ignoring Concepts
-
-If you want to exclude certain concepts from the pipeline (preventing hours of unnecessary LLM processing), you can move them to `wiki/ignore/`:
-
-```bash
-# See all active and ignored concepts
-python manage_ignore.py list
-
-# Ignore a concept (prevents compile_wiki.py, refine_wiki.py, and distill_wiki.py from processing it)
-python manage_ignore.py ignore concept_name
-
-# Re-enable a concept
-python manage_ignore.py unignore concept_name
-```
-
-**How it works:**
-- When you run `python manage_ignore.py ignore alchemy`, it moves `wiki/alchemy.md` to `wiki/ignore/alchemy.md`
-- All pipeline scripts automatically skip anything in `wiki/ignore/`, preventing wasted LLM calls during synthesis and refinement
-- The concept is completely excluded from training data generation
-- You can re-enable it anytime by running `unignore`
-
-## �🚀 The workflow
-
-### 1. Ingest Raw Data
-Add URLs to `urls.txt` and run:
-```bash
-python fetch_webpages.py
-```
-Or place your own raw files into `raw_data/`.
-
-Supported raw data formats:
-- `.md`
-- `.txt`
-- `.pdf`
-- `.epub` (supported by `compile_wiki.py` via `ebooklib` + `beautifulsoup4`)
-
-### 2. Compile the Knowledge Base (The Wiki)
-Synthesize raw data into "Current Understanding" articles. This step also separates historical evolution into separate files to keep the training source pure.
-```bash
-python compile_wiki.py
-```
-*Outputs: `wiki/*.md` and `wiki/history_*.md`*
-
-### 3. Refine and Merge Concepts
-Run the auditor to scan the entire wiki for overlapping concepts and merge them into unified, high-quality articles.
-```bash
-python refine_wiki.py
-```
-
-### 4. Distill into Training Pairs
-Generate high-density Q&A pairs (ChatML format) from the synthesized wiki. **Note:** Only "Current Understanding" articles are used; history is excluded to ensure the model learns the latest facts.
-```bash
-python distill_wiki.py
-```
-*Outputs: `data/staged_data.json`*
-
-### 5. Compile Final Dataset
-Convert the staged JSON pairs into the final `train.jsonl` format.
-```bash
-python compile_dataset.py
-```
-
-### 6. Fine-Tune the Model
-Train your 500M parameter model locally on your M5 Mac.
-```bash
-python finetune.py
-```
-
----
-
-## 📓 Using the Notebooks
-
-There are two primary Jupyter notebooks included. Here is when to use them:
-
-### `distill.ipynb`
-**When to use:** Use this for **interactive experimentation** during Stage 4. 
-- If you want to manually review how the LLM extracts Q&A pairs from a specific wiki article.
-- If you want to tweak prompts for specific types of data before running the full `distill_wiki.py` script.
-
-### `finetune.ipynb`
-**When to use:** Use this as a replacement for Stage 6 if you prefer an **interactive training environment**.
-- It provides visual loss curves and allows you to test the model (Inference) immediately after training within the same environment.
-- Highly recommended for your first few runs on the M5 Mac to monitor performance.
-
----
-
-## 🛠 Model Export (WebGPU / Transformers.js)
-To export your fine-tuned model for use in the browser:
-1. Ensure the model is saved to `model_16bit` in the training script.
-2. Run the conversion:
+4. Confirm PyTorch can see the GPU before training:
    ```bash
-   uv pip install 'optimum[exporters]'
-   optimum-cli export onnx --model ./model_16bit ./onnx_output
+   uv run python -c "import torch; print(torch.cuda.get_device_name(0))"
    ```
+
+## Configuration
+
+- `lm_studio`: endpoint and model used to distill and optionally audit focused wiki articles.
+- `finetune.base_model`: Hugging Face model loaded by Unsloth.
+
+## Workflow
+
+### 1. Curate the focused corpus
+
+Treat `wiki_complete/` as read-only. Place proposed rewritten articles in
+`wiki_focused/review_queue/`. After human review, move or copy approved,
+training-ready Markdown files into `wiki_focused/articles/`. Only files in
+`wiki_focused/articles/` are eligible for distillation.
+
+Spiritual, religious, contemplative, and occult material may be retained when
+it is accessible, culturally contextualized, and clear about the difference
+between historical belief, personal experience, symbolism, and established
+evidence.
+
+### 2. Audit the focused corpus (optional, recommended)
+
+Run a read-only audit before distillation to find exact and likely near
+duplicates, flag concepts without corpus definitions, identify possible
+consistency issues, and review topic emphasis:
+
+```bash
+uv run python audit_corpus.py
+```
+
+The semantic pass uses the `lm_studio` model configured in `config.json` and
+sends focused article text to that private endpoint. It treats the articles as
+the corpus authority and does not consult external sources. Results are review
+signals, not factual judgments; an automated report cannot establish what the
+fine-tuning base model already knows. A content-hash cache in the report
+directory avoids re-analyzing unchanged articles, and each successful model
+result is saved immediately so a later failure can resume from completed work.
+The CLI prints progress for each article and consistency pair.
+By default, at most the 200 most lexically related article pairs are checked
+for possible conflicts; adjust this with `--max-pairs`.
+
+Use `--offline` for a deterministic-only report containing exact and near
+duplicates plus recurring-vocabulary signals, without calling LM Studio:
+
+```bash
+uv run python audit_corpus.py --offline
+```
+
+Both Markdown and JSON reports are written to
+`reports/corpus_audit/`. The script does not edit articles or training data.
+Similarity and pair-selection thresholds can be adjusted with
+`--near-duplicate-threshold` and `--similarity-threshold`.
+
+### 3. Distill focused wiki articles
+
+Generate instruction/response pairs from the approved focused articles. The
+script writes pairs to `data/staged_data.json` and skips unchanged articles
+unless `--force` is supplied.
+
+```bash
+uv run python distill_wiki.py
+```
+
+### 4. Review and compile the training set
+
+Review pairs marked with `requires_review` in `data/staged_data.json`, then compile the approved records. This overwrites `data/train.jsonl`, keeping the dataset idempotent.
+
+```bash
+uv run python compile_dataset.py
+```
+
+### 5. Fine-tune with Unsloth
+
+Train the configured model on the NVIDIA GPU. LoRA adapters are written to `lora_model/`; a merged 16-bit model is written to `model_16bit/`.
+
+```bash
+uv run python finetune.py
+```

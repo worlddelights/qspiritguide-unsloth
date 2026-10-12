@@ -1,0 +1,482 @@
+# Focused corpus audit
+
+Generated: 2026-10-11T00:20:25.289363+00:00
+
+This report is advisory. Articles are treated as the corpus authority. Similarity, concept, and conflict flags require human review.
+
+## Corpus overview
+
+- Articles: 115
+- Approximate word count: 34,339
+- Related-pair threshold: cosine similarity >= 0.12
+- Near-duplicate threshold: cosine similarity >= 0.72
+
+## Source JSON-escape preflight
+
+This scan reports unusual backslash sequences in source text that could be copied into model-generated JSON. It cannot predict model output; response parsing also repairs invalid JSON backslash escapes when possible.
+
+No suspicious backslash sequences detected.
+## Exact duplicates
+
+None detected.
+
+## Near-duplicate candidates
+
+None detected at the configured threshold.
+
+## Recurring vocabulary (offline signal, not topic classification)
+
+- **life** - 64 articles (56%)
+- **understood** - 63 articles (55%)
+- **reality** - 61 articles (53%)
+- **experience** - 55 articles (48%)
+- **understanding** - 55 articles (48%)
+- **process** - 52 articles (45%)
+- **toward** - 52 articles (45%)
+- **individual** - 50 articles (43%)
+- **merely** - 49 articles (43%)
+- **physical** - 48 articles (42%)
+- **existence** - 47 articles (41%)
+- **spiritual** - 47 articles (41%)
+- **core** - 47 articles (41%)
+- **self** - 45 articles (39%)
+- **state** - 41 articles (36%)
+- **requires** - 41 articles (36%)
+- **primary** - 41 articles (36%)
+- **inherent** - 39 articles (34%)
+- **profound** - 39 articles (34%)
+- **personal** - 39 articles (34%)
+- **consciousness** - 39 articles (34%)
+- **true** - 39 articles (34%)
+- **practice** - 38 articles (33%)
+- **action** - 38 articles (33%)
+- **external** - 38 articles (33%)
+- **inner** - 37 articles (32%)
+- **one's** - 37 articles (32%)
+- **thought** - 37 articles (32%)
+- **fundamentally** - 35 articles (30%)
+- **fundamental** - 35 articles (30%)
+
+## Concepts not defined in the corpus
+
+These were identified as important concepts but no analyzed article explicitly defined them. This is a model-assisted review signal, not proof.
+
+- **Catalysts for learning and growth** (importance 3, mentioned in 1 articles): acceptance_and_gratitude.md
+- **Intuitive Connection** (importance 3, mentioned in 1 articles): mystery.md
+- **Nirvana** (importance 3, mentioned in 1 articles): aversion.md
+- **causal relationships** (importance 3, mentioned in 1 articles): rule-sets.md
+- **cause and effect** (importance 3, mentioned in 1 articles): creative_opportunity.md
+- **continuity** (importance 3, mentioned in 1 articles): akasa.md
+- **id** (importance 3, mentioned in 1 articles): superego_.md
+- **immortal spiritual entity** (importance 3, mentioned in 1 articles): desire-body__kama-rupa_.md
+- **liberation** (importance 3, mentioned in 1 articles): aversion.md
+- **lower quaternary principles** (importance 3, mentioned in 1 articles): desire-body__kama-rupa_.md
+- **material reality** (importance 3, mentioned in 1 articles): infosphere.md
+- **mortal aspects of human existence** (importance 3, mentioned in 1 articles): desire-body__kama-rupa_.md
+- **observable evidence and logical reasoning** (importance 3, mentioned in 1 articles): epicurus.md
+- **rational, empirical understanding of nature** (importance 3, mentioned in 1 articles): epicurus.md
+- **saṃsāra** (importance 3, mentioned in 1 articles): aversion.md
+- **self-determination** (importance 3, mentioned in 1 articles): creative_opportunity.md
+- **Present moment** (importance 2, mentioned in 2 articles): acceptance_and_gratitude.md, point_of_power.md
+- **Puranas** (importance 2, mentioned in 2 articles): brahma.md, loka.md
+- **Authentic choices and actions** (importance 2, mentioned in 1 articles): natural_abundance.md
+- **Authentic vibrational state** (importance 2, mentioned in 1 articles): natural_abundance.md
+- **Cognitive reframing** (importance 2, mentioned in 1 articles): prosperity_theology.md
+- **Countertransference** (importance 2, mentioned in 1 articles): transference.md
+- **Creative visualization** (importance 2, mentioned in 1 articles): prosperity_theology.md
+- **Discipline** (importance 2, mentioned in 1 articles): parental_guidance.md
+- **Divine creative energy** (importance 2, mentioned in 1 articles): affirmations.md
+- **Faith** (importance 2, mentioned in 1 articles): reason.md
+- **Flaws and imperfections** (importance 2, mentioned in 1 articles): acceptance_and_gratitude.md
+- **Gratitude** (importance 2, mentioned in 1 articles): acceptance_and_gratitude.md
+- **Imaginative extrapolation** (importance 2, mentioned in 1 articles): rational_speculation.md
+- **Immune system** (importance 2, mentioned in 1 articles): biological_communication.md
+- **Infinite Creator** (importance 2, mentioned in 1 articles): affirmations.md
+- **Inner constructs** (importance 2, mentioned in 1 articles): expectation.md
+- **Intuition** (importance 2, mentioned in 1 articles): reason.md
+- **Jewish mystical traditions** (importance 2, mentioned in 1 articles): tree_of_life.md
+- **Logical inference** (importance 2, mentioned in 1 articles): rational_speculation.md
+- **Metaphysics** (importance 2, mentioned in 1 articles): loka.md
+- **Mind** (importance 2, mentioned in 1 articles): philosophical_mentalism.md
+- **Outer experience** (importance 2, mentioned in 1 articles): expectation.md
+- **Personal evolution** (importance 2, mentioned in 1 articles): acceptance_and_gratitude.md
+- **Rationality** (importance 2, mentioned in 1 articles): reason.md
+- **Self-expression** (importance 2, mentioned in 1 articles): spontaneity.md
+- **Self-reflection** (importance 2, mentioned in 1 articles): transference.md
+- **Shiva** (importance 2, mentioned in 1 articles): brahma.md
+- **Soul evolution** (importance 2, mentioned in 1 articles): humility.md
+- **Spirit** (importance 2, mentioned in 1 articles): philosophical_mentalism.md
+- **Spiritual Discipline** (importance 2, mentioned in 1 articles): active_listening.md
+- **Spiritual attribute** (importance 2, mentioned in 1 articles): humility.md
+- **Spiritual context** (importance 2, mentioned in 1 articles): integrity.md
+- **Spiritual traditions** (importance 2, mentioned in 1 articles): time.md
+- **Suggestion** (importance 2, mentioned in 1 articles): expectation.md
+- **Systematic comparison of observed phenomena** (importance 2, mentioned in 1 articles): rational_speculation.md
+- **Theosophical movement** (importance 2, mentioned in 1 articles): board_of_control_for_america.md
+- **Theosophical society** (importance 2, mentioned in 1 articles): board_of_control_for_america.md
+- **Vedas** (importance 2, mentioned in 1 articles): brahma.md
+- **Vishnu** (importance 2, mentioned in 1 articles): brahma.md
+- **animalistic impulses** (importance 2, mentioned in 1 articles): desire-body__kama-rupa_.md
+- **assumptions** (importance 2, mentioned in 1 articles): metacognition.md
+- **astrological claims** (importance 2, mentioned in 1 articles): zodiac.md
+- **attention** (importance 2, mentioned in 1 articles): metacognition.md
+- **capacity** (importance 2, mentioned in 1 articles): progressive_development.md
+- **channeling** (importance 2, mentioned in 1 articles): channeling.md
+- **consciousness experiment** (importance 2, mentioned in 1 articles): rule-sets.md
+- **consciousness unit** (importance 2, mentioned in 1 articles): feedback_mechanism.md
+- **cosmology** (importance 2, mentioned in 1 articles): tree_of_life.md
+- **emotions** (importance 2, mentioned in 1 articles): metacognition.md
+- **empirical knowledge** (importance 2, mentioned in 1 articles): scientific_translation.md
+- **ethical choices** (importance 2, mentioned in 1 articles): social_status_vs_inner_worth.md
+- **friendship** (importance 2, mentioned in 1 articles): epicurus.md
+- **future self** (importance 2, mentioned in 1 articles): channeling.md
+- **gender** (importance 2, mentioned in 1 articles): gender_principle.md
+- **greed (craving)** (importance 2, mentioned in 1 articles): aversion.md
+- **habitual interpretations** (importance 2, mentioned in 1 articles): metacognition.md
+- **human constitution** (importance 2, mentioned in 1 articles): desire-body__kama-rupa_.md
+- **ignorance (delusion)** (importance 2, mentioned in 1 articles): aversion.md
+- **impermanence** (importance 2, mentioned in 1 articles): akasa.md
+- **individuality** (importance 2, mentioned in 1 articles): desire-body__kama-rupa_.md
+- **interdependence** (importance 2, mentioned in 1 articles): law_of_one.md
+- **intrinsic value** (importance 2, mentioned in 1 articles): social_status_vs_inner_worth.md
+- **klesa** (importance 2, mentioned in 1 articles): aversion.md
+- **local reality** (importance 2, mentioned in 1 articles): rule-sets.md
+- **magical practices** (importance 2, mentioned in 1 articles): zodiac.md
+- **major classifications of life** (importance 2, mentioned in 1 articles): species_interconnection.md
+- **manifestation** (importance 2, mentioned in 1 articles): be-do-have_paradigm.md
+- **mastery** (importance 2, mentioned in 1 articles): seizing_opportunity.md
+- **material accumulation** (importance 2, mentioned in 1 articles): money_as_energy.md
+- **matter and phenomenal experience** (importance 2, mentioned in 1 articles): philosophical_mentalism.md
+- **moral conduct** (importance 2, mentioned in 1 articles): social_status_vs_inner_worth.md
+- **natural laws** (importance 2, mentioned in 1 articles): creative_opportunity.md
+- **outer conditions and inner patterns** (importance 2, mentioned in 1 articles): elements.md
+- **personality** (importance 2, mentioned in 1 articles): desire-body__kama-rupa_.md
+- **scientific models** (importance 2, mentioned in 1 articles): scientific_translation.md
+- **self-sufficiency** (importance 2, mentioned in 1 articles): epicurus.md
+- **simulated reality** (importance 2, mentioned in 1 articles): rule-sets.md
+- **thought pattern** (importance 2, mentioned in 1 articles): gnostics_warning_on_archons.md
+- **thoughts** (importance 2, mentioned in 1 articles): metacognition.md
+- **universal law** (importance 2, mentioned in 1 articles): creative_opportunity.md
+- **American continent** (importance 1, mentioned in 1 articles): board_of_control_for_america.md
+- **Classical Mechanics** (importance 1, mentioned in 1 articles): quantum_theory.md
+- **Core Meaning** (importance 1, mentioned in 1 articles): historical_idioms.md
+- **Earthly experience** (importance 1, mentioned in 1 articles): humility.md
+- **Empirical observation** (importance 1, mentioned in 1 articles): rational_speculation.md
+- **Limitation** (importance 1, mentioned in 1 articles): natural_abundance.md
+- **Linear logic** (importance 1, mentioned in 1 articles): spontaneity.md
+- **Mental and psychic energy** (importance 1, mentioned in 1 articles): expectation.md
+- **Noble Eightfold Path** (importance 1, mentioned in 1 articles): kindfulness.md
+- **Passive observation** (importance 1, mentioned in 1 articles): experience.md
+- **Self-Awareness** (importance 1, mentioned in 1 articles): active_listening.md
+- **Self-evaluation** (importance 1, mentioned in 1 articles): acceptance_and_gratitude.md
+- **Symbolic or magical interpretation** (importance 1, mentioned in 1 articles): rational_speculation.md
+- **Systematic external validation** (importance 1, mentioned in 1 articles): experience.md
+- **alchemical concepts** (importance 1, mentioned in 1 articles): scholasticism.md
+- **astrological theory** (importance 1, mentioned in 1 articles): scholasticism.md
+- **being and non-being** (importance 1, mentioned in 1 articles): dual_nature.md
+- **biological sex** (importance 1, mentioned in 1 articles): gender_principle.md
+- **degrees** (importance 1, mentioned in 1 articles): freemasonry.md
+- **genetic component** (importance 1, mentioned in 1 articles): environmental_factors.md
+- **light and dark** (importance 1, mentioned in 1 articles): dual_nature.md
+- **masculine and feminine** (importance 1, mentioned in 1 articles): dual_nature.md
+- **natural history** (importance 1, mentioned in 1 articles): scientific_translation.md
+- **natural philosophy** (importance 1, mentioned in 1 articles): scholasticism.md
+- **physical reality** (importance 1, mentioned in 1 articles): point_of_power.md
+- **ritual history** (importance 1, mentioned in 1 articles): tree_of_life.md
+- **self-actualization** (importance 1, mentioned in 1 articles): inherent_worth.md
+- **spiritual service** (importance 1, mentioned in 1 articles): money_as_energy.md
+- **thought and awareness** (importance 1, mentioned in 1 articles): philosophical_mentalism.md
+
+## Possible consistency issues
+
+No possible conflicts flagged in the analyzed article pairs.
+
+## Model-assigned topic emphasis
+
+Analyzed 5 of 5 lexically related article pairs using `google/gemma-4-e4b`.
+
+- **metaphysics** - 18 articles (16%)
+- **personal growth** - 13 articles (11%)
+- **consciousness** - 13 articles (11%)
+- **self-improvement** - 9 articles (8%)
+- **spiritual practice** - 8 articles (7%)
+- **mindfulness** - 7 articles (6%)
+- **spiritual development** - 7 articles (6%)
+- **philosophy** - 7 articles (6%)
+- **consciousness theory** - 6 articles (5%)
+- **psychology** - 6 articles (5%)
+- **cosmology** - 6 articles (5%)
+- **personal development** - 5 articles (4%)
+- **spiritual practices** - 4 articles (3%)
+- **self-reflection** - 4 articles (3%)
+- **ethics** - 4 articles (3%)
+- **emotional regulation** - 4 articles (3%)
+- **spiritual philosophy** - 3 articles (3%)
+- **self-mastery** - 3 articles (3%)
+- **buddhism** - 3 articles (3%)
+- **epistemology** - 3 articles (3%)
+- **self-care** - 3 articles (3%)
+- **self-direction** - 2 articles (2%)
+- **communication skills** - 2 articles (2%)
+- **co-creation** - 2 articles (2%)
+- **loss and change** - 2 articles (2%)
+- **ego psychology** - 2 articles (2%)
+- **spiritual teachings** - 2 articles (2%)
+- **self-determination** - 2 articles (2%)
+- **causality** - 2 articles (2%)
+- **free will** - 2 articles (2%)
+- **self-realization** - 2 articles (2%)
+- **symbolism** - 2 articles (2%)
+- **philosophy of mind** - 2 articles (2%)
+- **interconnectedness** - 2 articles (2%)
+- **moral development** - 2 articles (2%)
+- **manifestation** - 2 articles (2%)
+- **mind-body connection** - 2 articles (2%)
+- **spiritual evolution** - 2 articles (2%)
+- **resource management** - 2 articles (2%)
+- **personal agency** - 2 articles (2%)
+- **gnosticism** - 2 articles (2%)
+- **metacognition** - 2 articles (2%)
+- **emotional processing** - 2 articles (2%)
+- **spiritual guidance** - 2 articles (2%)
+- **self-worth** - 2 articles (2%)
+- **personal ethics** - 2 articles (2%)
+- **jewish mysticism** - 2 articles (2%)
+- **emotional awareness** - 1 articles (1%)
+- **inner evolution** - 1 articles (1%)
+- **self-improvement concepts** - 1 articles (1%)
+- **acceptance** - 1 articles (1%)
+- **gratitude** - 1 articles (1%)
+- **emotional spectrum** - 1 articles (1%)
+- **life cycles** - 1 articles (1%)
+- **meditation practices** - 1 articles (1%)
+- **spiritual concepts** - 1 articles (1%)
+- **agency** - 1 articles (1%)
+- **personal authority** - 1 articles (1%)
+- **self-sovereignty** - 1 articles (1%)
+- **metaphor** - 1 articles (1%)
+- **esoteric philosophy** - 1 articles (1%)
+- **internal cultivation** - 1 articles (1%)
+- **spiritual alchemy** - 1 articles (1%)
+- **self-development** - 1 articles (1%)
+- **attributional styles** - 1 articles (1%)
+- **cognitive theory** - 1 articles (1%)
+- **career guidance** - 1 articles (1%)
+- **personal direction** - 1 articles (1%)
+- **self-exploration** - 1 articles (1%)
+- **ego dynamics** - 1 articles (1%)
+- **non-judgment** - 1 articles (1%)
+- **spiritual error** - 1 articles (1%)
+- **internal choice** - 1 articles (1%)
+- **manifestation law** - 1 articles (1%)
+- **paradigm** - 1 articles (1%)
+- **spiritual growth** - 1 articles (1%)
+- **belief systems** - 1 articles (1%)
+- **biological systems** - 1 articles (1%)
+- **ecology** - 1 articles (1%)
+- **information exchange** - 1 articles (1%)
+- **life processes** - 1 articles (1%)
+- **american history** - 1 articles (1%)
+- **organizational structure** - 1 articles (1%)
+- **religious movements** - 1 articles (1%)
+- **deities** - 1 articles (1%)
+- **hinduism** - 1 articles (1%)
+- **energetic anatomy** - 1 articles (1%)
+- **human consciousness** - 1 articles (1%)
+- **sanskrit terminology** - 1 articles (1%)
+- **yoga/meditation practices** - 1 articles (1%)
+- **flow state** - 1 articles (1%)
+- **mindset** - 1 articles (1%)
+- **proactive inquiry** - 1 articles (1%)
+- **self-advocacy** - 1 articles (1%)
+- **ethical standards** - 1 articles (1%)
+- **global history** - 1 articles (1%)
+- **integration mechanisms** - 1 articles (1%)
+- **narrative patterns** - 1 articles (1%)
+- **systemic frameworks** - 1 articles (1%)
+- **civic duty** - 1 articles (1%)
+- **individual potential** - 1 articles (1%)
+- **social structure** - 1 articles (1%)
+- **desire-body principles** - 1 articles (1%)
+- **human constitution** - 1 articles (1%)
+- **mortal self** - 1 articles (1%)
+- **personal evolution** - 1 articles (1%)
+- **principles of existence** - 1 articles (1%)
+- **economic theory** - 1 articles (1%)
+- **financial systems** - 1 articles (1%)
+- **resource allocation** - 1 articles (1%)
+- **social justice** - 1 articles (1%)
+- **psychological models** - 1 articles (1%)
+- **self-regulation** - 1 articles (1%)
+- **empathy** - 1 articles (1%)
+- **telepathy** - 1 articles (1%)
+- **vibrations** - 1 articles (1%)
+- **cognitive styles** - 1 articles (1%)
+- **environment** - 1 articles (1%)
+- **family dynamics** - 1 articles (1%)
+- **optimism** - 1 articles (1%)
+- **ancient philosophy** - 1 articles (1%)
+- **empiricism** - 1 articles (1%)
+- **epicureanism** - 1 articles (1%)
+- **education theory** - 1 articles (1%)
+- **ethical philosophy** - 1 articles (1%)
+- **personal conduct** - 1 articles (1%)
+- **psychic energy** - 1 articles (1%)
+- **interdimensional travel** - 1 articles (1%)
+- **planetary guidance** - 1 articles (1%)
+- **evolutionary psychology** - 1 articles (1%)
+- **self-modification** - 1 articles (1%)
+- **earning income** - 1 articles (1%)
+- **financial discipline** - 1 articles (1%)
+- **saving funds** - 1 articles (1%)
+- **ethical responsibility** - 1 articles (1%)
+- **decision making** - 1 articles (1%)
+- **free will theory** - 1 articles (1%)
+- **esoteric traditions** - 1 articles (1%)
+- **fraternal organizations** - 1 articles (1%)
+- **dual polarity** - 1 articles (1%)
+- **gender principles** - 1 articles (1%)
+- **genetic heritage** - 1 articles (1%)
+- **individual spirit** - 1 articles (1%)
+- **apocryphal literature** - 1 articles (1%)
+- **mystical practice** - 1 articles (1%)
+- **theological history** - 1 articles (1%)
+- **cognitive practices** - 1 articles (1%)
+- **critical inquiry** - 1 articles (1%)
+- **divine authority** - 1 articles (1%)
+- **grief response** - 1 articles (1%)
+- **therapeutic approaches** - 1 articles (1%)
+- **afterlife processes** - 1 articles (1%)
+- **cosmic hierarchy** - 1 articles (1%)
+- **metaphysical entities** - 1 articles (1%)
+- **soul progression** - 1 articles (1%)
+- **cosmic law** - 1 articles (1%)
+- **guidance systems** - 1 articles (1%)
+- **etymology** - 1 articles (1%)
+- **historical idioms** - 1 articles (1%)
+- **proverbs** - 1 articles (1%)
+- **spirituality** - 1 articles (1%)
+- **information theory** - 1 articles (1%)
+- **reality structure** - 1 articles (1%)
+- **moral philosophy** - 1 articles (1%)
+- **soul growth** - 1 articles (1%)
+- **consciousness mechanics** - 1 articles (1%)
+- **directed consciousness** - 1 articles (1%)
+- **intentional practice** - 1 articles (1%)
+- **cognitive processes** - 1 articles (1%)
+- **perception** - 1 articles (1%)
+- **subjectivity** - 1 articles (1%)
+- **ethical development** - 1 articles (1%)
+- **mindfulness practices** - 1 articles (1%)
+- **religious tradition** - 1 articles (1%)
+- **universalism** - 1 articles (1%)
+- **relationships** - 1 articles (1%)
+- **self-control** - 1 articles (1%)
+- **lightworkers** - 1 articles (1%)
+- **self-love** - 1 articles (1%)
+- **existence** - 1 articles (1%)
+- **indian mythology** - 1 articles (1%)
+- **magic practices** - 1 articles (1%)
+- **spiritual disciplines** - 1 articles (1%)
+- **cognitive process** - 1 articles (1%)
+- **energy flow** - 1 articles (1%)
+- **money philosophy** - 1 articles (1%)
+- **spiritual wealth** - 1 articles (1%)
+- **self-actualization** - 1 articles (1%)
+- **natural abundance** - 1 articles (1%)
+- **fear management** - 1 articles (1%)
+- **inner divinity** - 1 articles (1%)
+- **ethics and manners** - 1 articles (1%)
+- **parenting** - 1 articles (1%)
+- **social development** - 1 articles (1%)
+- **spiritual nurturing** - 1 articles (1%)
+- **forgiveness and truth** - 1 articles (1%)
+- **oneness vs separation** - 1 articles (1%)
+- **spiritual reality** - 1 articles (1%)
+- **physical health** - 1 articles (1%)
+- **self-care practices** - 1 articles (1%)
+- **change** - 1 articles (1%)
+- **point of power** - 1 articles (1%)
+- **afterlife concepts** - 1 articles (1%)
+- **emotional impulses** - 1 articles (1%)
+- **societal structures** - 1 articles (1%)
+- **human growth** - 1 articles (1%)
+- **life limitations** - 1 articles (1%)
+- **self-improvement techniques** - 1 articles (1%)
+- **theology belief systems** - 1 articles (1%)
+- **body awareness** - 1 articles (1%)
+- **chinese practices** - 1 articles (1%)
+- **self-cultivation** - 1 articles (1%)
+- **kabbalah** - 1 articles (1%)
+- **qliphoth** - 1 articles (1%)
+- **measurement problem** - 1 articles (1%)
+- **physical potentiality** - 1 articles (1%)
+- **quantization principles** - 1 articles (1%)
+- **quantum theory** - 1 articles (1%)
+- **personal freedom** - 1 articles (1%)
+- **history of inquiry** - 1 articles (1%)
+- **speculative thought** - 1 articles (1%)
+- **cognitive faculties** - 1 articles (1%)
+- **truth determination** - 1 articles (1%)
+- **balance** - 1 articles (1%)
+- **cyclical flow** - 1 articles (1%)
+- **rhythm** - 1 articles (1%)
+- **rules and constraints** - 1 articles (1%)
+- **simulation theory** - 1 articles (1%)
+- **intellectual movements** - 1 articles (1%)
+- **theology** - 1 articles (1%)
+- **meaning and purpose** - 1 articles (1%)
+- **personal beliefs** - 1 articles (1%)
+- **science and religion relationship** - 1 articles (1%)
+- **knowledge transfer** - 1 articles (1%)
+- **scientific translation** - 1 articles (1%)
+- **lifestyle choices** - 1 articles (1%)
+- **anxiety management** - 1 articles (1%)
+- **interpersonal relationships** - 1 articles (1%)
+- **spiritual maturity** - 1 articles (1%)
+- **quantum physics** - 1 articles (1%)
+- **spacetime structure** - 1 articles (1%)
+- **social comparison** - 1 articles (1%)
+- **consciousness influence** - 1 articles (1%)
+- **practitioner principles** - 1 articles (1%)
+- **psychoacoustics** - 1 articles (1%)
+- **sound healing modalities** - 1 articles (1%)
+- **biology** - 1 articles (1%)
+- **species interconnection** - 1 articles (1%)
+- **creativity** - 1 articles (1%)
+- **nervous system regulation** - 1 articles (1%)
+- **neurobiology** - 1 articles (1%)
+- **psycho-physiology** - 1 articles (1%)
+- **systemic distress** - 1 articles (1%)
+- **emotional distress** - 1 articles (1%)
+- **psychological coping** - 1 articles (1%)
+- **human experience** - 1 articles (1%)
+- **moral codes** - 1 articles (1%)
+- **psyche structure** - 1 articles (1%)
+- **psychological development** - 1 articles (1%)
+- **divine will** - 1 articles (1%)
+- **ego management** - 1 articles (1%)
+- **self-acceptance** - 1 articles (1%)
+- **basic needs security** - 1 articles (1%)
+- **consciousness shift** - 1 articles (1%)
+- **economic incentives** - 1 articles (1%)
+- **resource depletion** - 1 articles (1%)
+- **systemic crisis** - 1 articles (1%)
+- **cognitive science** - 1 articles (1%)
+- **narrative theory** - 1 articles (1%)
+- **societal development** - 1 articles (1%)
+- **time as medium** - 1 articles (1%)
+- **psychological dynamics** - 1 articles (1%)
+- **relationship patterns** - 1 articles (1%)
+- **consciousness and manifestation** - 1 articles (1%)
+- **informational field theory** - 1 articles (1%)
+- **personal reality influence** - 1 articles (1%)
+- **gnosis** - 1 articles (1%)
+- **self-inquiry** - 1 articles (1%)
+- **coincidence interpretation** - 1 articles (1%)
+- **occult practices** - 1 articles (1%)
+- **psychic abilities** - 1 articles (1%)
+- **astrology** - 1 articles (1%)
+- **cultural constructs** - 1 articles (1%)
+- **magical practices** - 1 articles (1%)
+- **symbols** - 1 articles (1%)

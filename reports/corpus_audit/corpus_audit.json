@@ -1,0 +1,2477 @@
+{
+  "generated_at": "2026-10-11T00:20:25.289363+00:00",
+  "corpus": {
+    "directory": "wiki_focused\\articles",
+    "article_count": 115,
+    "word_count": 34339,
+    "related_pair_threshold": 0.12,
+    "similarity_threshold": 0.72
+  },
+  "exact_duplicates": [],
+  "near_duplicates": [],
+  "keyword_emphasis": [
+    {
+      "term": "life",
+      "article_count": 64,
+      "corpus_share": 0.5565217391304348
+    },
+    {
+      "term": "understood",
+      "article_count": 63,
+      "corpus_share": 0.5478260869565217
+    },
+    {
+      "term": "reality",
+      "article_count": 61,
+      "corpus_share": 0.5304347826086957
+    },
+    {
+      "term": "experience",
+      "article_count": 55,
+      "corpus_share": 0.4782608695652174
+    },
+    {
+      "term": "understanding",
+      "article_count": 55,
+      "corpus_share": 0.4782608695652174
+    },
+    {
+      "term": "process",
+      "article_count": 52,
+      "corpus_share": 0.45217391304347826
+    },
+    {
+      "term": "toward",
+      "article_count": 52,
+      "corpus_share": 0.45217391304347826
+    },
+    {
+      "term": "individual",
+      "article_count": 50,
+      "corpus_share": 0.43478260869565216
+    },
+    {
+      "term": "merely",
+      "article_count": 49,
+      "corpus_share": 0.4260869565217391
+    },
+    {
+      "term": "physical",
+      "article_count": 48,
+      "corpus_share": 0.41739130434782606
+    },
+    {
+      "term": "existence",
+      "article_count": 47,
+      "corpus_share": 0.40869565217391307
+    },
+    {
+      "term": "spiritual",
+      "article_count": 47,
+      "corpus_share": 0.40869565217391307
+    },
+    {
+      "term": "core",
+      "article_count": 47,
+      "corpus_share": 0.40869565217391307
+    },
+    {
+      "term": "self",
+      "article_count": 45,
+      "corpus_share": 0.391304347826087
+    },
+    {
+      "term": "state",
+      "article_count": 41,
+      "corpus_share": 0.3565217391304348
+    },
+    {
+      "term": "requires",
+      "article_count": 41,
+      "corpus_share": 0.3565217391304348
+    },
+    {
+      "term": "primary",
+      "article_count": 41,
+      "corpus_share": 0.3565217391304348
+    },
+    {
+      "term": "inherent",
+      "article_count": 39,
+      "corpus_share": 0.3391304347826087
+    },
+    {
+      "term": "profound",
+      "article_count": 39,
+      "corpus_share": 0.3391304347826087
+    },
+    {
+      "term": "personal",
+      "article_count": 39,
+      "corpus_share": 0.3391304347826087
+    },
+    {
+      "term": "consciousness",
+      "article_count": 39,
+      "corpus_share": 0.3391304347826087
+    },
+    {
+      "term": "true",
+      "article_count": 39,
+      "corpus_share": 0.3391304347826087
+    },
+    {
+      "term": "practice",
+      "article_count": 38,
+      "corpus_share": 0.33043478260869563
+    },
+    {
+      "term": "action",
+      "article_count": 38,
+      "corpus_share": 0.33043478260869563
+    },
+    {
+      "term": "external",
+      "article_count": 38,
+      "corpus_share": 0.33043478260869563
+    },
+    {
+      "term": "inner",
+      "article_count": 37,
+      "corpus_share": 0.3217391304347826
+    },
+    {
+      "term": "one's",
+      "article_count": 37,
+      "corpus_share": 0.3217391304347826
+    },
+    {
+      "term": "thought",
+      "article_count": 37,
+      "corpus_share": 0.3217391304347826
+    },
+    {
+      "term": "fundamentally",
+      "article_count": 35,
+      "corpus_share": 0.30434782608695654
+    },
+    {
+      "term": "fundamental",
+      "article_count": 35,
+      "corpus_share": 0.30434782608695654
+    }
+  ],
+  "preflight_json_escape_warnings": [],
+  "semantic_analysis": {
+    "undefined_concepts": [
+      {
+        "concept": "Catalysts for learning and growth",
+        "mentions": [
+          "acceptance_and_gratitude.md"
+        ],
+        "importance": 3
+      },
+      {
+        "concept": "Intuitive Connection",
+        "mentions": [
+          "mystery.md"
+        ],
+        "importance": 3
+      },
+      {
+        "concept": "Nirvana",
+        "mentions": [
+          "aversion.md"
+        ],
+        "importance": 3
+      },
+      {
+        "concept": "causal relationships",
+        "mentions": [
+          "rule-sets.md"
+        ],
+        "importance": 3
+      },
+      {
+        "concept": "cause and effect",
+        "mentions": [
+          "creative_opportunity.md"
+        ],
+        "importance": 3
+      },
+      {
+        "concept": "continuity",
+        "mentions": [
+          "akasa.md"
+        ],
+        "importance": 3
+      },
+      {
+        "concept": "id",
+        "mentions": [
+          "superego_.md"
+        ],
+        "importance": 3
+      },
+      {
+        "concept": "immortal spiritual entity",
+        "mentions": [
+          "desire-body__kama-rupa_.md"
+        ],
+        "importance": 3
+      },
+      {
+        "concept": "liberation",
+        "mentions": [
+          "aversion.md"
+        ],
+        "importance": 3
+      },
+      {
+        "concept": "lower quaternary principles",
+        "mentions": [
+          "desire-body__kama-rupa_.md"
+        ],
+        "importance": 3
+      },
+      {
+        "concept": "material reality",
+        "mentions": [
+          "infosphere.md"
+        ],
+        "importance": 3
+      },
+      {
+        "concept": "mortal aspects of human existence",
+        "mentions": [
+          "desire-body__kama-rupa_.md"
+        ],
+        "importance": 3
+      },
+      {
+        "concept": "observable evidence and logical reasoning",
+        "mentions": [
+          "epicurus.md"
+        ],
+        "importance": 3
+      },
+      {
+        "concept": "rational, empirical understanding of nature",
+        "mentions": [
+          "epicurus.md"
+        ],
+        "importance": 3
+      },
+      {
+        "concept": "saṃsāra",
+        "mentions": [
+          "aversion.md"
+        ],
+        "importance": 3
+      },
+      {
+        "concept": "self-determination",
+        "mentions": [
+          "creative_opportunity.md"
+        ],
+        "importance": 3
+      },
+      {
+        "concept": "Present moment",
+        "mentions": [
+          "acceptance_and_gratitude.md",
+          "point_of_power.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "Puranas",
+        "mentions": [
+          "brahma.md",
+          "loka.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "Authentic choices and actions",
+        "mentions": [
+          "natural_abundance.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "Authentic vibrational state",
+        "mentions": [
+          "natural_abundance.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "Cognitive reframing",
+        "mentions": [
+          "prosperity_theology.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "Countertransference",
+        "mentions": [
+          "transference.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "Creative visualization",
+        "mentions": [
+          "prosperity_theology.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "Discipline",
+        "mentions": [
+          "parental_guidance.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "Divine creative energy",
+        "mentions": [
+          "affirmations.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "Faith",
+        "mentions": [
+          "reason.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "Flaws and imperfections",
+        "mentions": [
+          "acceptance_and_gratitude.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "Gratitude",
+        "mentions": [
+          "acceptance_and_gratitude.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "Imaginative extrapolation",
+        "mentions": [
+          "rational_speculation.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "Immune system",
+        "mentions": [
+          "biological_communication.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "Infinite Creator",
+        "mentions": [
+          "affirmations.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "Inner constructs",
+        "mentions": [
+          "expectation.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "Intuition",
+        "mentions": [
+          "reason.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "Jewish mystical traditions",
+        "mentions": [
+          "tree_of_life.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "Logical inference",
+        "mentions": [
+          "rational_speculation.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "Metaphysics",
+        "mentions": [
+          "loka.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "Mind",
+        "mentions": [
+          "philosophical_mentalism.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "Outer experience",
+        "mentions": [
+          "expectation.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "Personal evolution",
+        "mentions": [
+          "acceptance_and_gratitude.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "Rationality",
+        "mentions": [
+          "reason.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "Self-expression",
+        "mentions": [
+          "spontaneity.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "Self-reflection",
+        "mentions": [
+          "transference.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "Shiva",
+        "mentions": [
+          "brahma.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "Soul evolution",
+        "mentions": [
+          "humility.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "Spirit",
+        "mentions": [
+          "philosophical_mentalism.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "Spiritual Discipline",
+        "mentions": [
+          "active_listening.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "Spiritual attribute",
+        "mentions": [
+          "humility.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "Spiritual context",
+        "mentions": [
+          "integrity.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "Spiritual traditions",
+        "mentions": [
+          "time.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "Suggestion",
+        "mentions": [
+          "expectation.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "Systematic comparison of observed phenomena",
+        "mentions": [
+          "rational_speculation.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "Theosophical movement",
+        "mentions": [
+          "board_of_control_for_america.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "Theosophical society",
+        "mentions": [
+          "board_of_control_for_america.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "Vedas",
+        "mentions": [
+          "brahma.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "Vishnu",
+        "mentions": [
+          "brahma.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "animalistic impulses",
+        "mentions": [
+          "desire-body__kama-rupa_.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "assumptions",
+        "mentions": [
+          "metacognition.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "astrological claims",
+        "mentions": [
+          "zodiac.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "attention",
+        "mentions": [
+          "metacognition.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "capacity",
+        "mentions": [
+          "progressive_development.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "channeling",
+        "mentions": [
+          "channeling.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "consciousness experiment",
+        "mentions": [
+          "rule-sets.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "consciousness unit",
+        "mentions": [
+          "feedback_mechanism.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "cosmology",
+        "mentions": [
+          "tree_of_life.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "emotions",
+        "mentions": [
+          "metacognition.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "empirical knowledge",
+        "mentions": [
+          "scientific_translation.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "ethical choices",
+        "mentions": [
+          "social_status_vs_inner_worth.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "friendship",
+        "mentions": [
+          "epicurus.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "future self",
+        "mentions": [
+          "channeling.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "gender",
+        "mentions": [
+          "gender_principle.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "greed (craving)",
+        "mentions": [
+          "aversion.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "habitual interpretations",
+        "mentions": [
+          "metacognition.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "human constitution",
+        "mentions": [
+          "desire-body__kama-rupa_.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "ignorance (delusion)",
+        "mentions": [
+          "aversion.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "impermanence",
+        "mentions": [
+          "akasa.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "individuality",
+        "mentions": [
+          "desire-body__kama-rupa_.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "interdependence",
+        "mentions": [
+          "law_of_one.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "intrinsic value",
+        "mentions": [
+          "social_status_vs_inner_worth.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "klesa",
+        "mentions": [
+          "aversion.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "local reality",
+        "mentions": [
+          "rule-sets.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "magical practices",
+        "mentions": [
+          "zodiac.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "major classifications of life",
+        "mentions": [
+          "species_interconnection.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "manifestation",
+        "mentions": [
+          "be-do-have_paradigm.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "mastery",
+        "mentions": [
+          "seizing_opportunity.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "material accumulation",
+        "mentions": [
+          "money_as_energy.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "matter and phenomenal experience",
+        "mentions": [
+          "philosophical_mentalism.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "moral conduct",
+        "mentions": [
+          "social_status_vs_inner_worth.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "natural laws",
+        "mentions": [
+          "creative_opportunity.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "outer conditions and inner patterns",
+        "mentions": [
+          "elements.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "personality",
+        "mentions": [
+          "desire-body__kama-rupa_.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "scientific models",
+        "mentions": [
+          "scientific_translation.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "self-sufficiency",
+        "mentions": [
+          "epicurus.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "simulated reality",
+        "mentions": [
+          "rule-sets.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "thought pattern",
+        "mentions": [
+          "gnostics_warning_on_archons.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "thoughts",
+        "mentions": [
+          "metacognition.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "universal law",
+        "mentions": [
+          "creative_opportunity.md"
+        ],
+        "importance": 2
+      },
+      {
+        "concept": "American continent",
+        "mentions": [
+          "board_of_control_for_america.md"
+        ],
+        "importance": 1
+      },
+      {
+        "concept": "Classical Mechanics",
+        "mentions": [
+          "quantum_theory.md"
+        ],
+        "importance": 1
+      },
+      {
+        "concept": "Core Meaning",
+        "mentions": [
+          "historical_idioms.md"
+        ],
+        "importance": 1
+      },
+      {
+        "concept": "Earthly experience",
+        "mentions": [
+          "humility.md"
+        ],
+        "importance": 1
+      },
+      {
+        "concept": "Empirical observation",
+        "mentions": [
+          "rational_speculation.md"
+        ],
+        "importance": 1
+      },
+      {
+        "concept": "Limitation",
+        "mentions": [
+          "natural_abundance.md"
+        ],
+        "importance": 1
+      },
+      {
+        "concept": "Linear logic",
+        "mentions": [
+          "spontaneity.md"
+        ],
+        "importance": 1
+      },
+      {
+        "concept": "Mental and psychic energy",
+        "mentions": [
+          "expectation.md"
+        ],
+        "importance": 1
+      },
+      {
+        "concept": "Noble Eightfold Path",
+        "mentions": [
+          "kindfulness.md"
+        ],
+        "importance": 1
+      },
+      {
+        "concept": "Passive observation",
+        "mentions": [
+          "experience.md"
+        ],
+        "importance": 1
+      },
+      {
+        "concept": "Self-Awareness",
+        "mentions": [
+          "active_listening.md"
+        ],
+        "importance": 1
+      },
+      {
+        "concept": "Self-evaluation",
+        "mentions": [
+          "acceptance_and_gratitude.md"
+        ],
+        "importance": 1
+      },
+      {
+        "concept": "Symbolic or magical interpretation",
+        "mentions": [
+          "rational_speculation.md"
+        ],
+        "importance": 1
+      },
+      {
+        "concept": "Systematic external validation",
+        "mentions": [
+          "experience.md"
+        ],
+        "importance": 1
+      },
+      {
+        "concept": "alchemical concepts",
+        "mentions": [
+          "scholasticism.md"
+        ],
+        "importance": 1
+      },
+      {
+        "concept": "astrological theory",
+        "mentions": [
+          "scholasticism.md"
+        ],
+        "importance": 1
+      },
+      {
+        "concept": "being and non-being",
+        "mentions": [
+          "dual_nature.md"
+        ],
+        "importance": 1
+      },
+      {
+        "concept": "biological sex",
+        "mentions": [
+          "gender_principle.md"
+        ],
+        "importance": 1
+      },
+      {
+        "concept": "degrees",
+        "mentions": [
+          "freemasonry.md"
+        ],
+        "importance": 1
+      },
+      {
+        "concept": "genetic component",
+        "mentions": [
+          "environmental_factors.md"
+        ],
+        "importance": 1
+      },
+      {
+        "concept": "light and dark",
+        "mentions": [
+          "dual_nature.md"
+        ],
+        "importance": 1
+      },
+      {
+        "concept": "masculine and feminine",
+        "mentions": [
+          "dual_nature.md"
+        ],
+        "importance": 1
+      },
+      {
+        "concept": "natural history",
+        "mentions": [
+          "scientific_translation.md"
+        ],
+        "importance": 1
+      },
+      {
+        "concept": "natural philosophy",
+        "mentions": [
+          "scholasticism.md"
+        ],
+        "importance": 1
+      },
+      {
+        "concept": "physical reality",
+        "mentions": [
+          "point_of_power.md"
+        ],
+        "importance": 1
+      },
+      {
+        "concept": "ritual history",
+        "mentions": [
+          "tree_of_life.md"
+        ],
+        "importance": 1
+      },
+      {
+        "concept": "self-actualization",
+        "mentions": [
+          "inherent_worth.md"
+        ],
+        "importance": 1
+      },
+      {
+        "concept": "spiritual service",
+        "mentions": [
+          "money_as_energy.md"
+        ],
+        "importance": 1
+      },
+      {
+        "concept": "thought and awareness",
+        "mentions": [
+          "philosophical_mentalism.md"
+        ],
+        "importance": 1
+      }
+    ],
+    "conflicts": [],
+    "topics": [
+      {
+        "topic": "metaphysics",
+        "article_count": 18,
+        "corpus_share": 0.1565217391304348
+      },
+      {
+        "topic": "personal growth",
+        "article_count": 13,
+        "corpus_share": 0.11304347826086956
+      },
+      {
+        "topic": "consciousness",
+        "article_count": 13,
+        "corpus_share": 0.11304347826086956
+      },
+      {
+        "topic": "self-improvement",
+        "article_count": 9,
+        "corpus_share": 0.0782608695652174
+      },
+      {
+        "topic": "spiritual practice",
+        "article_count": 8,
+        "corpus_share": 0.06956521739130435
+      },
+      {
+        "topic": "mindfulness",
+        "article_count": 7,
+        "corpus_share": 0.06086956521739131
+      },
+      {
+        "topic": "spiritual development",
+        "article_count": 7,
+        "corpus_share": 0.06086956521739131
+      },
+      {
+        "topic": "philosophy",
+        "article_count": 7,
+        "corpus_share": 0.06086956521739131
+      },
+      {
+        "topic": "consciousness theory",
+        "article_count": 6,
+        "corpus_share": 0.05217391304347826
+      },
+      {
+        "topic": "psychology",
+        "article_count": 6,
+        "corpus_share": 0.05217391304347826
+      },
+      {
+        "topic": "cosmology",
+        "article_count": 6,
+        "corpus_share": 0.05217391304347826
+      },
+      {
+        "topic": "personal development",
+        "article_count": 5,
+        "corpus_share": 0.043478260869565216
+      },
+      {
+        "topic": "spiritual practices",
+        "article_count": 4,
+        "corpus_share": 0.034782608695652174
+      },
+      {
+        "topic": "self-reflection",
+        "article_count": 4,
+        "corpus_share": 0.034782608695652174
+      },
+      {
+        "topic": "ethics",
+        "article_count": 4,
+        "corpus_share": 0.034782608695652174
+      },
+      {
+        "topic": "emotional regulation",
+        "article_count": 4,
+        "corpus_share": 0.034782608695652174
+      },
+      {
+        "topic": "spiritual philosophy",
+        "article_count": 3,
+        "corpus_share": 0.02608695652173913
+      },
+      {
+        "topic": "self-mastery",
+        "article_count": 3,
+        "corpus_share": 0.02608695652173913
+      },
+      {
+        "topic": "buddhism",
+        "article_count": 3,
+        "corpus_share": 0.02608695652173913
+      },
+      {
+        "topic": "epistemology",
+        "article_count": 3,
+        "corpus_share": 0.02608695652173913
+      },
+      {
+        "topic": "self-care",
+        "article_count": 3,
+        "corpus_share": 0.02608695652173913
+      },
+      {
+        "topic": "self-direction",
+        "article_count": 2,
+        "corpus_share": 0.017391304347826087
+      },
+      {
+        "topic": "communication skills",
+        "article_count": 2,
+        "corpus_share": 0.017391304347826087
+      },
+      {
+        "topic": "co-creation",
+        "article_count": 2,
+        "corpus_share": 0.017391304347826087
+      },
+      {
+        "topic": "loss and change",
+        "article_count": 2,
+        "corpus_share": 0.017391304347826087
+      },
+      {
+        "topic": "ego psychology",
+        "article_count": 2,
+        "corpus_share": 0.017391304347826087
+      },
+      {
+        "topic": "spiritual teachings",
+        "article_count": 2,
+        "corpus_share": 0.017391304347826087
+      },
+      {
+        "topic": "self-determination",
+        "article_count": 2,
+        "corpus_share": 0.017391304347826087
+      },
+      {
+        "topic": "causality",
+        "article_count": 2,
+        "corpus_share": 0.017391304347826087
+      },
+      {
+        "topic": "free will",
+        "article_count": 2,
+        "corpus_share": 0.017391304347826087
+      },
+      {
+        "topic": "self-realization",
+        "article_count": 2,
+        "corpus_share": 0.017391304347826087
+      },
+      {
+        "topic": "symbolism",
+        "article_count": 2,
+        "corpus_share": 0.017391304347826087
+      },
+      {
+        "topic": "philosophy of mind",
+        "article_count": 2,
+        "corpus_share": 0.017391304347826087
+      },
+      {
+        "topic": "interconnectedness",
+        "article_count": 2,
+        "corpus_share": 0.017391304347826087
+      },
+      {
+        "topic": "moral development",
+        "article_count": 2,
+        "corpus_share": 0.017391304347826087
+      },
+      {
+        "topic": "manifestation",
+        "article_count": 2,
+        "corpus_share": 0.017391304347826087
+      },
+      {
+        "topic": "mind-body connection",
+        "article_count": 2,
+        "corpus_share": 0.017391304347826087
+      },
+      {
+        "topic": "spiritual evolution",
+        "article_count": 2,
+        "corpus_share": 0.017391304347826087
+      },
+      {
+        "topic": "resource management",
+        "article_count": 2,
+        "corpus_share": 0.017391304347826087
+      },
+      {
+        "topic": "personal agency",
+        "article_count": 2,
+        "corpus_share": 0.017391304347826087
+      },
+      {
+        "topic": "gnosticism",
+        "article_count": 2,
+        "corpus_share": 0.017391304347826087
+      },
+      {
+        "topic": "metacognition",
+        "article_count": 2,
+        "corpus_share": 0.017391304347826087
+      },
+      {
+        "topic": "emotional processing",
+        "article_count": 2,
+        "corpus_share": 0.017391304347826087
+      },
+      {
+        "topic": "spiritual guidance",
+        "article_count": 2,
+        "corpus_share": 0.017391304347826087
+      },
+      {
+        "topic": "self-worth",
+        "article_count": 2,
+        "corpus_share": 0.017391304347826087
+      },
+      {
+        "topic": "personal ethics",
+        "article_count": 2,
+        "corpus_share": 0.017391304347826087
+      },
+      {
+        "topic": "jewish mysticism",
+        "article_count": 2,
+        "corpus_share": 0.017391304347826087
+      },
+      {
+        "topic": "emotional awareness",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "inner evolution",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "self-improvement concepts",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "acceptance",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "gratitude",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "emotional spectrum",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "life cycles",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "meditation practices",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "spiritual concepts",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "agency",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "personal authority",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "self-sovereignty",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "metaphor",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "esoteric philosophy",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "internal cultivation",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "spiritual alchemy",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "self-development",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "attributional styles",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "cognitive theory",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "career guidance",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "personal direction",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "self-exploration",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "ego dynamics",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "non-judgment",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "spiritual error",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "internal choice",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "manifestation law",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "paradigm",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "spiritual growth",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "belief systems",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "biological systems",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "ecology",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "information exchange",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "life processes",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "american history",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "organizational structure",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "religious movements",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "deities",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "hinduism",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "energetic anatomy",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "human consciousness",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "sanskrit terminology",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "yoga/meditation practices",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "flow state",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "mindset",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "proactive inquiry",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "self-advocacy",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "ethical standards",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "global history",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "integration mechanisms",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "narrative patterns",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "systemic frameworks",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "civic duty",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "individual potential",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "social structure",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "desire-body principles",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "human constitution",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "mortal self",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "personal evolution",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "principles of existence",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "economic theory",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "financial systems",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "resource allocation",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "social justice",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "psychological models",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "self-regulation",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "empathy",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "telepathy",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "vibrations",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "cognitive styles",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "environment",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "family dynamics",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "optimism",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "ancient philosophy",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "empiricism",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "epicureanism",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "education theory",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "ethical philosophy",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "personal conduct",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "psychic energy",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "interdimensional travel",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "planetary guidance",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "evolutionary psychology",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "self-modification",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "earning income",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "financial discipline",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "saving funds",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "ethical responsibility",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "decision making",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "free will theory",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "esoteric traditions",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "fraternal organizations",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "dual polarity",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "gender principles",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "genetic heritage",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "individual spirit",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "apocryphal literature",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "mystical practice",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "theological history",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "cognitive practices",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "critical inquiry",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "divine authority",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "grief response",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "therapeutic approaches",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "afterlife processes",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "cosmic hierarchy",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "metaphysical entities",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "soul progression",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "cosmic law",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "guidance systems",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "etymology",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "historical idioms",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "proverbs",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "spirituality",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "information theory",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "reality structure",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "moral philosophy",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "soul growth",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "consciousness mechanics",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "directed consciousness",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "intentional practice",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "cognitive processes",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "perception",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "subjectivity",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "ethical development",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "mindfulness practices",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "religious tradition",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "universalism",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "relationships",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "self-control",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "lightworkers",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "self-love",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "existence",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "indian mythology",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "magic practices",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "spiritual disciplines",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "cognitive process",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "energy flow",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "money philosophy",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "spiritual wealth",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "self-actualization",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "natural abundance",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "fear management",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "inner divinity",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "ethics and manners",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "parenting",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "social development",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "spiritual nurturing",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "forgiveness and truth",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "oneness vs separation",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "spiritual reality",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "physical health",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "self-care practices",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "change",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "point of power",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "afterlife concepts",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "emotional impulses",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "societal structures",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "human growth",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "life limitations",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "self-improvement techniques",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "theology belief systems",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "body awareness",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "chinese practices",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "self-cultivation",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "kabbalah",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "qliphoth",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "measurement problem",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "physical potentiality",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "quantization principles",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "quantum theory",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "personal freedom",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "history of inquiry",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "speculative thought",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "cognitive faculties",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "truth determination",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "balance",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "cyclical flow",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "rhythm",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "rules and constraints",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "simulation theory",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "intellectual movements",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "theology",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "meaning and purpose",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "personal beliefs",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "science and religion relationship",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "knowledge transfer",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "scientific translation",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "lifestyle choices",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "anxiety management",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "interpersonal relationships",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "spiritual maturity",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "quantum physics",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "spacetime structure",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "social comparison",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "consciousness influence",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "practitioner principles",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "psychoacoustics",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "sound healing modalities",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "biology",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "species interconnection",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "creativity",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "nervous system regulation",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "neurobiology",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "psycho-physiology",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "systemic distress",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "emotional distress",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "psychological coping",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "human experience",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "moral codes",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "psyche structure",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "psychological development",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "divine will",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "ego management",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "self-acceptance",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "basic needs security",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "consciousness shift",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "economic incentives",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "resource depletion",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "systemic crisis",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "cognitive science",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "narrative theory",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "societal development",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "time as medium",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "psychological dynamics",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "relationship patterns",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "consciousness and manifestation",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "informational field theory",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "personal reality influence",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "gnosis",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "self-inquiry",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "coincidence interpretation",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "occult practices",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "psychic abilities",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "astrology",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "cultural constructs",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "magical practices",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      },
+      {
+        "topic": "symbols",
+        "article_count": 1,
+        "corpus_share": 0.008695652173913044
+      }
+    ],
+    "analyzed_pairs": 5,
+    "candidate_pairs": 5,
+    "model": "google/gemma-4-e4b"
+  }
+}

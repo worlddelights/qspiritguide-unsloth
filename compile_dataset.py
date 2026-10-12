@@ -12,7 +12,7 @@ FINAL_FILE = "data/train.jsonl"
 
 def compile_dataset():
     if not os.path.exists(STAGED_FILE):
-        print(f"Error: {STAGED_FILE} not found. Run the distillation notebook first.")
+        print(f"Error: {STAGED_FILE} not found. Run `python distill_wiki.py` first.")
         return
 
     with open(STAGED_FILE, "r") as f:
@@ -21,7 +21,7 @@ def compile_dataset():
     compiled_count = 0
     skipped_count = 0
 
-    with open(FINAL_FILE, "a") as f:
+    with open(FINAL_FILE, "w") as f:
         for item in staged_data:
             # Check if it was flagged for review and never cleared.
             # You can clear it by setting "requires_review": false in the JSON.

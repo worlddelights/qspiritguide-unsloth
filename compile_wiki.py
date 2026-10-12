@@ -60,13 +60,14 @@ def get_file_hash(filepath):
     return hasher.hexdigest()
 
 def extract_text_from_pdf(filepath):
-    """Extract plain text from a PDF using PyMuPDF."""
+    """Extract plain text from a PDF using PyMuPDF, falling back to OCR if no text layer is found."""
     try:
         doc = fitz.open(filepath)
     except Exception as e:
         raise RuntimeError(f"Unable to open PDF '{filepath}': {e}") from e
 
     parts = []
+    has_text = False
     try:
         for page_number, page in enumerate(doc, start=1):
             text = page.get_text("text") or page.get_text()
@@ -74,9 +75,37 @@ def extract_text_from_pdf(filepath):
                 blocks = page.get_text("blocks")
                 if isinstance(blocks, list):
                     text = "\n".join(block[4] for block in blocks if len(block) > 4 and block[4])
-            parts.append(text or "")
+            if text and text.strip():
+                has_text = True
+                parts.append(text)
+            else:
+                parts.append("")
     finally:
         doc.close()
+
+    # Fallback to OCR if the entire PDF has no extractable text layer
+    if not has_text:
+        print(f"  -> No text layer found in '{os.path.basename(filepath)}'. Falling back to OCR...")
+        try:
+            import pytesseract
+            from pdf2image import convert_from_path
+        except ImportError as e:
+            raise ImportError(
+                "pytesseract and pdf2image are required for OCR support on scanned PDFs. "
+                "Ensure they are installed by running `uv sync`."
+            ) from e
+
+        ocr_parts = []
+        try:
+            # Convert PDF pages to PIL Images
+            images = convert_from_path(filepath)
+            for page_idx, image in enumerate(images, start=1):
+                print(f"     OCR processing page {page_idx}/{len(images)}...")
+                ocr_text = pytesseract.image_to_string(image)
+                ocr_parts.append(ocr_text or "")
+            return "\n".join(ocr_parts)
+        except Exception as e:
+            raise RuntimeError(f"OCR processing failed for '{filepath}': {e}") from e
 
     return "\n".join(parts)
 
@@ -216,6 +245,11 @@ RULES:
                 f.write(new_hist)
 
 def main():
+    import argparse
+    parser = argparse.ArgumentParser(description="Compile raw source files into wiki concepts.")
+    parser.add_argument("--all", "-a", action="store_true", help="Process all pending files instead of halting after one.")
+    args = parser.parse_args()
+
     if not os.path.exists(STATE_FILE):
         state = {}
     else:
@@ -281,10 +315,11 @@ def main():
         print(f"\n✅  Done with '{filename}'.")
         if remaining:
             print(f"   {len(remaining)} file(s) still pending: {remaining}")
-            print("   Review the wiki/ output, then re-run to continue.")
+            if not args.all:
+                print("   Review the wiki/ output, then re-run to continue.")
+                return  # exit after one new file so the human can review
         else:
             print("   All files have been processed.")
-        return  # exit after one new file so the human can review
 
 if __name__ == "__main__":
     main()

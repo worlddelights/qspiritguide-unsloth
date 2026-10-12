@@ -4,7 +4,7 @@ import re
 from tqdm import tqdm
 from openai import OpenAI
 
-# Configuration
+# 1. Configuration
 with open("config.json", "r") as f:
     CONFIG = json.load(f)
 
@@ -13,9 +13,10 @@ CLIENT = OpenAI(
     api_key=CONFIG["lm_studio"]["api_key"]
 )
 MODEL = CONFIG["lm_studio"]["model"]
-WIKI_DIR = "wiki"
+WIKI_DIR = os.path.join("wiki_focused", "articles")
 STAGED_FILE = "data/staged_data.json"
 
+# 2. Content Validation & LLM Call
 def is_meaningful_content(text):
     """Validate that text is meaningful (not junk or placeholder)."""
     if not isinstance(text, str):
@@ -41,16 +42,64 @@ def call_llm(system_prompt, user_prompt):
         print(f"Error calling LLM: {e}")
         return None
 
+# 3. Distillation Loop
+def get_file_hash(filepath):
+    import hashlib
+    hasher = hashlib.md5()
+    with open(filepath, 'rb') as f:
+        buf = f.read()
+        hasher.update(buf)
+    return hasher.hexdigest()
+
 def main():
+    import argparse
+    parser = argparse.ArgumentParser(
+        description="Distill approved, focused wiki articles into training Q&A pairs."
+    )
+    parser.add_argument("--force", "-f", action="store_true", help="Force distillation of all articles regardless of cache.")
+    parser.add_argument("--clear", action="store_true", help="Clear the distillation state cache and exit.")
+    args = parser.parse_args()
+
+    DISTILL_STATE_FILE = ".distill_state.json"
+
+    if args.clear:
+        if os.path.exists(DISTILL_STATE_FILE):
+            os.remove(DISTILL_STATE_FILE)
+            print("Cleared distillation state cache.")
+        else:
+            print("No state cache found to clear.")
+        return
+
     if not os.path.exists("data"):
         os.makedirs("data")
 
-    # Get all \"Current Understanding\" articles (exclude history_)
-    # Files in wiki/ignore/ subdirectory won't appear in os.listdir(WIKI_DIR)
+    # Only articles explicitly approved by moving them into this directory are eligible.
     wiki_files = [f for f in os.listdir(WIKI_DIR) if f.endswith('.md') and not f.startswith('history_')]
     
     if not wiki_files:
         print("No wiki files found to distill.")
+        return
+
+    # Load existing state cache
+    state = {}
+    if not args.force and os.path.exists(DISTILL_STATE_FILE):
+        try:
+            with open(DISTILL_STATE_FILE, 'r') as f:
+                state = json.load(f)
+        except Exception as e:
+            print(f"Warning: Failed to load state file: {e}")
+
+    # Determine files to process
+    pending_files = []
+    for filename in wiki_files:
+        filepath = os.path.join(WIKI_DIR, filename)
+        current_hash = get_file_hash(filepath)
+        if state.get(filename) != current_hash:
+            pending_files.append((filename, filepath, current_hash))
+
+    print(f"Found {len(wiki_files)} wiki files. {len(pending_files)} pending distillation.")
+    if not pending_files:
+        print("Everything is up to date.")
         return
 
     staged_data = []
@@ -61,8 +110,8 @@ def main():
             except:
                 pass
 
-    for filename in tqdm(wiki_files, desc="Distilling wiki articles"):
-        filepath = os.path.join(WIKI_DIR, filename)
+    processed_count = 0
+    for filename, filepath, current_hash in tqdm(pending_files, desc="Distilling wiki articles"):
         with open(filepath, 'r') as f:
             content = f.read()
 
@@ -93,17 +142,28 @@ Guidelines:
                         # Add review flag as in original pipeline
                         p["requires_review"] = False
                         p["review_reason"] = ""
+                        # Track the source wiki file for easy caching / editing
+                        p["source_file"] = filename
                         valid_pairs.append(p)
                 
+                # Filter out any existing staged pairs for this specific source file to ensure idempotency
+                staged_data = [item for item in staged_data if item.get("source_file") != filename]
                 staged_data.extend(valid_pairs)
                 
                 # Cumulative save
                 with open(STAGED_FILE, 'w') as f:
                     json.dump(staged_data, f, indent=2)
+
+                # Update the state file
+                state[filename] = current_hash
+                with open(DISTILL_STATE_FILE, 'w') as f:
+                    json.dump(state, f, indent=2)
+
+                processed_count += 1
             except Exception as e:
                 print(f"Failed to parse Q&A for {filename}: {e}")
 
-    print(f"Done! Total staged pairs: {len(staged_data)}")
+    print(f"Done! Processed {processed_count} files. Total staged pairs: {len(staged_data)}")
 
 if __name__ == "__main__":
     main()

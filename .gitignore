@@ -1,6 +1,7 @@
 raw_data
 data
 .wiki_state.json
-wiki
+wiki_complete
 .DS_Store
 .venv
+__pycache__

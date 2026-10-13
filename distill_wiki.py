@@ -112,8 +112,12 @@ def main():
 
     processed_count = 0
     for filename, filepath, current_hash in tqdm(pending_files, desc="Distilling wiki articles"):
-        with open(filepath, 'r') as f:
-            content = f.read()
+        with open(filepath, "rb") as f:
+            raw_content = f.read()
+        try:
+            content = raw_content.decode("utf-8-sig")
+        except UnicodeDecodeError:
+            content = raw_content.decode("cp1252", errors="replace")
 
         system_prompt = """You are an expert educational data generator. 
 Your task is to generate 5-10 high-quality, complex Instruction/Response pairs based ONLY on the provided knowledge article.

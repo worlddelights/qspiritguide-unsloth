@@ -1,113 +1,103 @@
-# AI Agent Guide (AGENTS.md)
+# QSpiritGuide Unsloth — Agent Guide
 
-This document is a guide for AI agents (including Copilot, Antigravity, and other assistant systems) to understand the project architecture, execution flows, known inefficiencies, and codebase bug patterns, enabling highly efficient modifications and execution in the future.
+This repository's supported workflow starts from a curated wiki corpus, distills it into reviewed ChatML training data, and fine-tunes a model locally with Unsloth on an NVIDIA GPU. Use the command-line scripts described below; Jupyter notebooks are not part of the supported workflow.
 
----
+## Active workflow
 
-## 🚀 1. Pipeline Architecture & Execution Flow
+### 1. Curate the focused corpus
 
-The project implements a **Wiki-First LLM Fine-Tuning Pipeline**. Instead of training on raw crawls, a high-capacity LLM (the "Librarian" hosted locally in LM-Studio) synthesizes raw sources into structured, distraction-free Wiki articles, which are then used to generate high-quality ChatML training pairs.
+- Treat `wiki_complete/` as read-only.
+- Put proposed rewritten articles in `wiki_focused/review_queue/`.
+- After human review, move or copy approved Markdown articles into `wiki_focused/articles/`. Only articles in this directory are eligible for distillation.
+- Keep articles accessible and culturally contextualized. Distinguish historical beliefs, personal experiences, and symbolism from established evidence.
 
-```mermaid
-graph TD
-    urls[urls.txt] -->|Stage 1: fetch_webpages.py| raw[raw_data/]
-    raw -->|Stage 2: compile_wiki.py| wiki[wiki/ & wiki/history/]
-    wiki -->|Stage 3: refine_wiki.py| refined[Refined wiki/ & wiki/history/]
-    refined -->|Stage 4: distill_wiki.py| staged[data/staged_data.json]
-    staged -->|Stage 5: compile_dataset.py| final[data/train.jsonl]
-    final -->|Stage 6: finetune.py / finetune.ipynb| lora[lora_model/ & model_16bit/]
+### 2. Audit the corpus (optional, recommended)
+
+Run the corpus audit before distillation:
+
+```bash
+uv run python audit_corpus.py
 ```
 
-### Stage Summary & Scripts
-1. **Ingest Raw Data** ([fetch_webpages.py](file:///mnt/e/SyncThing/mac-Documents/qspiritguide-unsloth/fetch_webpages.py)): Fetches URLs from `urls.txt` to `raw_data/` as Markdown via `trafilatura` and comments them out in `urls.txt`.
-2. **Compile Wiki** ([compile_wiki.py](file:///mnt/e/SyncThing/mac-Documents/qspiritguide-unsloth/compile_wiki.py)): Synthesizes raw files (PDF, EPUB, MD, TXT) into concepts. Creates `wiki/{concept}.md` (current understanding) and `wiki/history/{concept}.md` (chronological/history).
-3. **Refine Wiki** ([refine_wiki.py](file:///mnt/e/SyncThing/mac-Documents/qspiritguide-unsloth/refine_wiki.py)): Uses LLM to identify overlapping concepts and merge them to avoid redundancy.
-4. **Distill Training Pairs** ([distill_wiki.py](file:///mnt/e/SyncThing/mac-Documents/qspiritguide-unsloth/distill_wiki.py)): Uses LLM to extract 5-10 high-quality instruction-response pairs from `wiki/*.md` into `data/staged_data.json`.
-5. **Compile Dataset** ([compile_dataset.py](file:///mnt/e/SyncThing/mac-Documents/qspiritguide-unsloth/compile_dataset.py)): Formats non-flagged staged pairs into ChatML-compliant line-by-line JSONL at `data/train.jsonl`.
-6. **Fine-Tuning** ([finetune.py](file:///mnt/e/SyncThing/mac-Documents/qspiritguide-unsloth/finetune.py)): Fine-tunes `unsloth/Qwen2.5-0.5B` locally (uses `mlx-tune` on Darwin/macOS and `unsloth` on Linux).
+The semantic audit uses the model configured in `config.json` under `lm_studio` and sends focused article text to that configured endpoint. It does not edit articles or training data. Its findings are review signals, not factual judgments. For a deterministic-only audit that makes no model calls, run:
 
----
+```bash
+uv run python audit_corpus.py --offline
+```
 
-## 📁 2. Directory Structure & State Files
+Reports are written to `reports/corpus_audit/`. By default, the semantic pass checks at most 200 lexically related article pairs; `--max-pairs` changes that limit.
 
-- **`raw_data/`**: Source files (txt, md, pdf, epub).
-- **`wiki/`**: Compiled "Current Understanding" articles. Used for Stage 4 distillation.
-- **`wiki/history/`**: Historical and evolutionary contexts. Excluded from distillation.
-- **`wiki/ignore/`** & **`wiki/history/ignore/`**: Folders for ignored concepts (managed via `manage_ignore.py`).
-- **`data/staged_data.json`**: Buffered Q&A pairs (includes `requires_review` and `review_reason` flags).
-- **`data/train.jsonl`**: Synthesized ChatML data for direct training ingestion.
-- **`.wiki_state.json`**: Map of `{ "filename": "md5_hash" }` for tracking processed files in Stage 2.
+### 3. Distill approved articles
 
----
+```bash
+uv run python distill_wiki.py
+```
 
-## ⚠️ 3. Known Inefficiencies & Bugs in the Codebase
+The script processes Markdown files in `wiki_focused/articles/`, writes generated pairs to `data/staged_data.json`, and uses `.distill_state.json` to skip unchanged articles. Use `--force` to process all articles again or `--clear` to clear the state cache.
 
-When editing or debugging the codebase, be aware of the following issues:
+### 4. Review and compile training data
 
-### 3.1. History Directory Bug in `refine_wiki.py`
-* **File**: `refine_wiki.py` (lines 121-122)
-* **Problem**: When merging secondary concepts into primary ones, the script looks for history files in `wiki/` (e.g. `wiki/history_{concept}.md`) instead of `wiki/history/{concept}.md`.
-* **Code snippet**:
-  ```python
-  primary_hist = os.path.join(WIKI_DIR, f"history_{primary}")
-  secondary_hist = os.path.join(WIKI_DIR, f"history_{secondary}")
-  ```
-* **Impact**: History files are never merged or cleaned up during concept refinement, leading to orphan history files inside `wiki/history/`.
-* **Fix**: Change paths to point to `wiki/history/{concept}.md`:
-  ```python
-  HISTORY_DIR = os.path.join(WIKI_DIR, "history")
-  primary_hist = os.path.join(HISTORY_DIR, primary)
-  secondary_hist = os.path.join(HISTORY_DIR, secondary)
-  ```
+Review `data/staged_data.json`. Correct generated pairs as needed and clear `requires_review` only after review. Then compile the approved pairs:
 
-### 3.2. Single-File Halt in `compile_wiki.py`
-* **File**: `compile_wiki.py` (line 287)
-* **Problem**: The script halts using `return` after processing exactly *one* new file.
-* **Impact**: If a user uploads 10 new raw files, they must run `python compile_wiki.py` 10 separate times. This makes automated multi-file ingestion very slow and requires manual intervention.
-* **Fix**: Support a `--all` CLI flag or remove the hardcoded return statement if a batch execution mode is desired.
+```bash
+uv run python compile_dataset.py
+```
 
-### 3.3. Non-Idempotent Appending in `compile_dataset.py`
-* **File**: `compile_dataset.py` (line 24)
-* **Problem**: `data/train.jsonl` is opened in append mode (`"a"`).
-* **Impact**: If the user runs `compile_dataset.py` multiple times, all staging records are repeatedly appended to the dataset, creating massive numbers of duplicate training pairs.
-* **Fix**: Open the file in write mode (`"w"`) to overwrite it and ensure idempotency since `data/staged_data.json` is the source of truth.
+This overwrites `data/train.jsonl` and excludes records whose `requires_review` value is true.
 
-### 3.4. No Incremental/State Tracking in `distill_wiki.py`
-* **File**: `distill_wiki.py`
-* **Problem**: The script lacks any form of caching or state tracking (like `.wiki_state.json`). It processes *every* single file in `wiki/` on every execution.
-* **Impact**: Re-running distillation after updating or adding a single wiki file triggers expensive, slow LLM calls for the entire knowledge base.
-* **Fix**: Implement a `.distill_state.json` file or check `staged_data.json` to skip already distilled wiki concepts.
+### 5. Fine-tune locally
 
-### 3.5. Notebook out-of-sync with Pipeline Logic
-* **Files**: `distill.py` vs `distill_wiki.py`
-* **Problem**: `distill.ipynb` is compiled from `distill.py`, which is configured to chunk raw documents from `raw_data/` and includes conflict-aware prompting. However, the production pipeline runs `distill_wiki.py`, which operates directly on the unchunked synthesized `wiki/` documents and has a different prompt.
-* **Impact**: Experimenting in `distill.ipynb` does not match the prompt or data-flow logic of the CLI pipeline script (`distill_wiki.py`).
-* **Fix**: Standardize `create_distill_notebook.py` to extract code from `distill_wiki.py` or align their processing logic.
+```bash
+uv run python finetune.py
+```
 
-### 3.6. Incremental URL Updates in `fetch_webpages.py` (Design Decision)
-* **File**: `fetch_webpages.py` (line 65)
-* **Feature**: The `comment_out_line` function opens, reads, and writes `urls.txt` repeatedly inside the download loop.
-* **Purpose**: This is an intentional crash-resilient design. If the script crashes or is terminated mid-execution, all successfully fetched URLs are already saved as commented out in the URL list, preventing duplicate work on subsequent runs.
+Fine-tuning runs locally with Unsloth and requires an NVIDIA GPU with CUDA-enabled PyTorch. Select exactly one configured checkpoint per invocation with `--model`; the LM Studio model configured under `lm_studio` is used for distillation and semantic auditing, not as a fine-tuning base model. Each run saves its own LoRA adapter and merged 16-bit model under `training_runs/`.
 
-### 3.7. Missing `unsloth` Dependency in `pyproject.toml`
-* **File**: `pyproject.toml`
-* **Problem**: The script `finetune.py` imports `unsloth` on non-Mac (Linux/Windows) systems, but `unsloth` is not specified under `dependencies` or `optional-dependencies`.
-* **Fix**: Document this in the installation instructions or add `unsloth` setup instructions in `README.md` for GPU machines.
+#### Planned fine-tuning base models
 
----
+The planned base checkpoints for the browser models are the following three
+instruction-tuned models. Fine-tune each independently from its original
+Hugging Face checkpoint, using the same approved dataset:
 
-## ⚡ 4. Code & Notebook Synchronization Rule
+| App tier | Base checkpoint | Browser export target |
+| --- | --- | --- |
+| `1B-WebGPU` | `meta-llama/Llama-3.2-1B-Instruct` | WebGPU, `q4f16` |
+| `360M-WebGPU` | `HuggingFaceTB/SmolLM2-360M-Instruct` | WebGPU, `q4f16` |
+| `135M-WASM` | `HuggingFaceTB/SmolLM2-135M-Instruct` | WASM, `int8` |
 
-If you modify `finetune.py` or `distill.py`, you **must** regenerate the corresponding Jupyter Notebooks to keep them in sync:
-- Run `python create_notebook.py` after editing `finetune.py`.
-- Run `python create_distill_notebook.py` after editing `distill.py`.
+See [MODEL_FINETUNING_HANDOFF.md](./MODEL_FINETUNING_HANDOFF.md) for the
+conversion, packaging, and acceptance requirements. The planned bases above
+supersede Qwen as the intended fine-tuning targets; the LM Studio model remains
+the separate distillation/audit model.
 
----
+`finetune.py --list-models` lists these configured choices. Run one model at a
+time, for example `uv run python finetune.py --model smollm2-135m --max-steps 3`
+for a short smoke run, then omit `--max-steps` for a full configured epoch.
+Each invocation writes to a unique timestamped directory under
+`training_runs/<model-id>/`, including adapter, merged checkpoint, trainer
+checkpoints, and run metadata. The trainer uses each checkpoint's original
+tokenizer and chat template. Smoke-test each exact checkpoint with the
+installed Unsloth version; do not assume that sharing a `LlamaForCausalLM`
+architecture label guarantees Unsloth support for either SmolLM2 size.
 
-## 💡 5. Recommended Workflow for AI Agents
+## Configuration and state
 
-To optimize your efficiency when implementing features or debugging this codebase:
+- `config.json`
+  - `lm_studio`: endpoint and model for distillation and semantic auditing.
+  - `finetune.models`: explicit Hugging Face checkpoints selectable for individual local training runs.
+  - `finetune.training`: shared initial Unsloth training settings.
+- `wiki_complete/`: read-only source corpus.
+- `wiki_focused/review_queue/`: proposed articles awaiting human review.
+- `wiki_focused/articles/`: approved articles used by the active workflow.
+- `data/staged_data.json`: generated pairs awaiting review.
+- `data/train.jsonl`: compiled dataset consumed by fine-tuning.
+- `.distill_state.json`: hashes used to skip unchanged articles during distillation.
+- `reports/corpus_audit/`: audit reports.
+- `training_runs/`: ignored local checkpoints, adapters, merged models, and run metadata.
 
-1. **Verify `config.json`**: Before initiating LLM calls, read `config.json` to ensure the endpoint and context settings are appropriate.
-2. **Speed Up Compilations**: Recommend the user to run `python manage_ignore.py ignore <concept>` on heavy or non-essential topics to bypass long processing during testing.
-3. **Analyze Staging State**: Always check `data/staged_data.json` before proposing dataset changes to understand the existing schema and review reasons.
+## Agent guidance
+
+- Before running any model-backed command, check the relevant `config.json` settings and confirm the configured service is intended and available.
+- Inspect `data/staged_data.json` before proposing changes to the training data; preserve its existing record schema and review flags.
+- Keep `wiki_complete/` unchanged. Make proposed edits in the review queue and only distill approved articles.
+- Do not use the legacy ingestion/refinement scripts or notebooks as part of the active workflow unless the user specifically requests work on those components.

@@ -26,7 +26,8 @@ The earlier ingestion, wiki compilation, and refinement stages are intentionally
 ## Configuration
 
 - `lm_studio`: endpoint and model used to distill and optionally audit focused wiki articles.
-- `finetune.base_model`: Hugging Face model loaded by Unsloth.
+- `finetune.models`: named base checkpoints that can be selected for individual Unsloth runs.
+- `finetune.training`: shared initial training settings; tune them only after evaluating each model.
 
 ## Workflow
 
@@ -95,8 +96,26 @@ uv run python compile_dataset.py
 
 ### 5. Fine-tune with Unsloth
 
-Train the configured model on the NVIDIA GPU. LoRA adapters are written to `lora_model/`; a merged 16-bit model is written to `model_16bit/`.
+List the available base models, then explicitly select exactly one model per
+invocation. To smoke-test a selection, cap it at a few steps first:
 
 ```bash
-uv run python finetune.py
+uv run python finetune.py --list-models
+uv run python finetune.py --model smollm2-135m --max-steps 3
 ```
+
+For a full run, omit `--max-steps`; training uses the configured epoch count.
+Run models sequentially on the same GPU. Each invocation creates a timestamped
+directory under `training_runs/<model-id>/` containing trainer checkpoints,
+the LoRA adapter, a merged 16-bit checkpoint, and `run.json` metadata. Outputs
+are ignored by Git and a later run will not overwrite an earlier one.
+
+The Llama 3.2 base may require accepting Meta's Hugging Face model terms and
+authenticating with the Hub before downloading it. The trainer uses each
+checkpoint's own tokenizer chat template; it does not rewrite templates to
+ChatML.
+
+See [MODEL_FINETUNING_HANDOFF.md](./MODEL_FINETUNING_HANDOFF.md) for the ONNX
+export, quantization, packaging, and browser acceptance steps. Merged 16-bit
+weights are the source for that separate conversion workflow; the trainer
+does not produce browser-ready quantized ONNX files.

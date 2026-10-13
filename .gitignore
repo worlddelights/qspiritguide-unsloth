@@ -4,4 +4,5 @@ data
 wiki_complete
 .DS_Store
 .venv
+training_runs
 __pycache__
